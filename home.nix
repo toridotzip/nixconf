@@ -110,14 +110,14 @@
         # enabledThemes = [ "midnight.css" ];
       };
       themes = { 
-        "midnight" = /etc/nixos/modules/vesktop/midnight.theme.css; 
+        "midnight" = toString ./modules/vesktop/midnight.theme.css; 
       };
     };
   };
 
   services.swayosd = {
     enable = true;
-    stylePath = "/etc/nixos/resources/swayosd/style.css";
+    stylePath = toString ./resources/swayosd/style.css;
   };
 
   services.mako = {

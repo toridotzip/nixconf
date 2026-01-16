@@ -6,12 +6,12 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "daltonmenezes";
       repo = "aura-theme";
-      rev = "main";
+      rev = "v2.0.0";
       sparseCheckout = [
         "/packages/neovim"
       ];
-      sha256 = "sha256-mU5rZkEycjmqiCDsKlrT1mgAnvmktG/lYvgUPRt+iiE=";
-    } + "/packages/neovim";
+      sha256 = "sha256-DwkCyhj4ozR8G45US8zrLwL3pt40IcYNTbO5Ic3t8uM=";
+    };
   };
 in
 {

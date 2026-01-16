@@ -35,7 +35,7 @@
           tooltip = false;
         };
         "image" = {
-          path = "/etc/nixos/resources/nix-snowflake-white.svg";
+          path = "./resources/nix-snowflake-white.svg";
           size = 20;
           on-click = "firefox https://search.nixos.org/packages"; 
           tooltip-format = "Package Search";
