@@ -1,18 +1,14 @@
 { pkgs, lib, ... }:
-
 let
   aura-theme = pkgs.vimUtils.buildVimPlugin {
     name = "aura-theme";
     src = pkgs.fetchFromGitHub {
       owner = "daltonmenezes";
       repo = "aura-theme";
-      rev = "v2.0.0";
-      sparseCheckout = [
-        "/packages/neovim"
-      ];
-      sha256 = "sha256-DwkCyhj4ozR8G45US8zrLwL3pt40IcYNTbO5Ic3t8uM=";
-    };
-  };
+      rev = "505b6e2f0229f2637e8f6eda621b6cab98a41a87";
+      sha256 = "sha256-mIws/mbNsaevFfDSAj6n4qGVd8ZDPIsHkxY8Vpam7fM=";
+    } + "/packages/neovim";
+  };  
 in
 {
   programs.neovim = {
@@ -48,16 +44,16 @@ in
     plugins = with pkgs.vimPlugins; [
       nvim-lspconfig
       which-key-nvim
-      aura-theme
       mini-nvim
+      aura-theme
       (nvim-treesitter.withPlugins (
         plugins: with plugins; [
           nix
-	  markdown
-	  html
-	  css
-	  bash
-	]
+	        markdown
+	        html
+	        css
+	        bash
+	      ]
       ))
     ];
   };
