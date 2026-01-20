@@ -7,6 +7,7 @@
       # <home-manager/nixos>
       ./modules/vscode.nix
       ./modules/copyparty.nix
+      ./modules/wg.nix
     ];
 
   boot = {
@@ -254,6 +255,27 @@
   # --- Fonts ---
 
   fonts = {
+    fontconfig = {
+      hinting = {
+        style = "full";
+        enable = true;
+      };
+      antialias = false;
+      # defaultFonts = {
+      # serif = [ "Liberation Serif" ];
+      # sansSerif = [ "Liberation Sans" ];
+      # monospace = [ "Liberation Mono" ];
+      # };
+      #localConf = ''
+      #  <selectfont>
+      #    <rejectfont>
+      #      <glob>
+      #        ${pkgs.liberation_ttf}
+      #      /*</glob>
+      #    </rejectfont>
+      #  </selectfont>
+      #'';
+    };
     enableDefaultPackages = true;
     packages = with pkgs; [
       dm-mono
