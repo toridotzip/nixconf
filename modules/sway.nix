@@ -44,7 +44,7 @@
       };
       output = {
         "*" = {
-          background = "${../resources/CS_Lofi.jpg} fill";
+          background = "${../resources/wallpapers/wallhaven-xee7jd.jpg} fill";
         };
       };
       input = {

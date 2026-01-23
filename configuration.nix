@@ -7,7 +7,7 @@
       # <home-manager/nixos>
       ./modules/vscode.nix
       ./modules/copyparty.nix
-      ./modules/wg.nix
+      # ./modules/wg.nix
     ];
 
   boot = {
@@ -176,12 +176,7 @@
     signal-desktop
     protonup-qt
     heroic
-    gnuradio
     rawtherapee
-    nodejs
-    gns3-gui
-    gns3-server
-    dynamips
     # jellyfin-media-player
   ];
 
@@ -260,7 +255,7 @@
         style = "full";
         enable = true;
       };
-      antialias = false;
+      # antialias = false;
       # defaultFonts = {
       # serif = [ "Liberation Serif" ];
       # sansSerif = [ "Liberation Sans" ];
