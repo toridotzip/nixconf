@@ -115,6 +115,11 @@
     };
   };
 
+  services.gnome-keyring = {
+    enable = true;
+    components = [ "secrets" ];
+  };
+
   services.swayosd = {
     enable = true;
     stylePath = toString ./resources/swayosd/style.css;

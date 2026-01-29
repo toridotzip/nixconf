@@ -59,21 +59,21 @@
           indicator = "#2e9ef4";
           text = "#FFFFFF";
           border = "#080f0d";
-  	  childBorder = "#080f0d";
+      	  childBorder = "#080f0d";
         };
         focusedInactive = {
           background = "080f0d";
           text = "#71717b";
           border = "#080f0d";
-  	  childBorder = "#080f0d";
-  	  indicator = "#080f0d";
+      	  childBorder = "#080f0d";
+      	  indicator = "#080f0d";
         };
         unfocused = {
           background = "080f0d";
           text = "#71717b";
           border = "#080f0d";
-  	  childBorder = "#080f0d";
-  	  indicator = "#080f0d";
+      	  childBorder = "#080f0d";
+  	      indicator = "#080f0d";
         };
       };
       keybindings = 
@@ -87,14 +87,16 @@
         {
           # Open terminal
           "${mod}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
-	  # Quit application
+      	  # Quit application
           "${mod}+q" = "kill";
-	  # Show application Launcher
+	        # Show application Launcher
           "${mod}+d" = "exec ${pkgs.rofi}/bin/rofi -show drun";
-	  # Lock screen
+      	  # Lock screen
           "${mod}+l" = "exec ${pkgs.hyprlock}/bin/hyprlock";
-	  # Reload the configuration file
+      	  # Reload the configuration file
           "${mod}+Shift+c" = "reload";
+          # Exit sway
+          "${mod}+Shift+e" = "exec swaynag -t warning -m 'Really exit sway? This will end your wayland session.' -B 'Yes, exit sway' 'swaymsg exit'";
 
           # Screenshot
           "Print" = "exec grimshot --notify copy area";
@@ -135,9 +137,9 @@
           "${mod}+Shift+9" = "move container to workspace 9";
           "${mod}+Shift+0" = "move container to workspace 10";
 
-	  # Split focused object
-	  "${mod}+b" = "splith";
-	  "${mod}+v" = "splitv";
+      	  # Split focused object
+      	  "${mod}+b" = "splith";
+      	  "${mod}+v" = "splitv";
 
           # Switch the current container between different layout styles
           "${mod}+s" = "layout stacking";
@@ -146,17 +148,17 @@
 
           # Make the current focus fullscreen
           "${mod}+f" = "fullscreen";
-	  # Move focus to parent container
-	  "${mod}+a" = "focus parent";
+      	  # Move focus to parent container
+      	  "${mod}+a" = "focus parent";
 
-	  # Move focused window to scratchpad
-	  "${mod}+Shift+minus" = "move scratchpad";
-	  # Show next scratchpad window or hide focused scratchpad window
+      	  # Move focused window to scratchpad
+      	  "${mod}+Shift+minus" = "move scratchpad";
+      	  # Show next scratchpad window or hide focused scratchpad window
           "${mod}+minus" = "scratchpad show";
 
           
           # Switch keyboard layout
-	  "${mod}+Space" = ''exec swaymsg input "1:1:AT_Translated_Set_2_keyboard" xkb_switch_layout next'';
+      	  "${mod}+Space" = ''exec swaymsg input "1:1:AT_Translated_Set_2_keyboard" xkb_switch_layout next'';
 
           # Brightness
           "XF86MonBrightnessDown" = "exec swayosd-client --brightness -10";
