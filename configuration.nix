@@ -6,7 +6,7 @@
       ./hardware-configuration.nix
       # <home-manager/nixos>
       ./modules/vscode.nix
-      ./modules/copyparty.nix
+      # ./modules/copyparty.nix
       # ./modules/wg.nix
     ];
 
@@ -210,8 +210,6 @@
   environment.loginShellInit = ''
     [[ "$(tty)" == /dev/tty1 ]] && sway
   '';
-
-  services.openssh.enable = true;
 
   services.gnome.gnome-keyring.enable = true;
   services.dbus.packages = with pkgs; [ gnome-keyring ];

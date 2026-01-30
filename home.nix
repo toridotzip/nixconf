@@ -126,7 +126,19 @@
   };
 
   services.mako = {
-    enable = true;  	
+    enable = true;
+    settings = {
+      font = "monospace 10";
+      background-color = "#080f0d";
+      border-size = 0;
+      margin = 10;
+      padding = 8;
+      width = 250;
+      height = 100;
+      progress-color = "source #ffffff";
+      default-timeout = 5000;
+      ignore-timeout = true;
+    };
   };
 
   programs.fastfetch = {
