@@ -28,13 +28,16 @@ let
     vscodeExtensions = with vscode-extensions;
       [
         aura-theme
-	symbols
-	p5-vscode
+    	  symbols
+	      p5-vscode
         firefox-devtools.vscode-firefox-debug
         ms-vscode-remote.remote-ssh
-	bbenoist.nix
-	ritwickdey.liveserver
-	bradlc.vscode-tailwindcss
+	      bbenoist.nix
+	      ritwickdey.liveserver
+	      bradlc.vscode-tailwindcss
+        ms-python.python
+        ms-python.debugpy
+        arrterian.nix-env-selector
       ];
   };
 in

@@ -154,7 +154,7 @@
     settings = {
       logo = {
         type = "small";
-	source = "nixos";
+      	source = "nixos";
       };
       display = {
         separator = ": ";
@@ -166,18 +166,18 @@
             type = "os";
             format = "{pretty-name} {version-id} {arch}";
         }
-	"uptime"
-	{
+	      "uptime"
+        {
             type = "cpu";
             showPeCoreCount = true;
             temp = true;
         }
-	{
+        {
             type = "disk";
             key = "Disk";
             folders = "/";
         }
-	{
+        {
             type = "localip";
             key = "LAN IP";
             showIpv6 = true;
