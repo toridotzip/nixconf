@@ -92,6 +92,14 @@
     LC_TIME = "de_DE.UTF-8";
   };
 
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+    ];
+    config.common.default = "*";
+  };
+
   # Configure keymap in X11
   #services.xserver.xkb = {
   #  layout = "us";
@@ -108,43 +116,6 @@
     ];
   };
 
-  # Laptop Configs
-  services.logind.settings.Login = {
-    HandleLidSwitch = "suspend";
-  };
-
-  services.thermald.enable = true;
-  services.tlp = {
-    enable = true;
-    settings = {
-      CPU_SCALING_GOVERNOR_ON_AC = "performance";
-      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-      START_CHARGE_THRESH_BAT0 = 40;
-      STOP_CHARGE_THRESH_BAT0 = 80;
-    };
-  };
-
-  hardware.enableRedistributableFirmware = true;
-
-  hardware.graphics = {
-    enable = true;
-    extraPackages = with pkgs; [
-      intel-media-driver
-      intel-vaapi-driver
-      vpl-gpu-rt
-      intel-compute-runtime
-    ];
-  };
-
-  hardware.trackpoint = {
-    enable = true;
-    device = "TPPS/2 Elan TrackPoint";
-    sensitivity = 50;
-    speed = 10;
-    inertia = 20;
-    emulateWheel = true;
-  };
-
   # --- Packages ---
 
   # Allow unfree packages
@@ -156,6 +127,7 @@
   environment.sessionVariables = { 
     LIBVA_DRIVER_NAME = "iHD"; 
     LD_LIBRARY_PATH = [ "${pkgs.libsecret}/lib" ];
+    MOZ_ENABLE_WAYLAND = "1";
     # PATH = [ ];
   };
 
@@ -218,6 +190,7 @@
 
   services.pipewire = {
     enable = true;
+    alsa.enable = true;
     pulse.enable = true;
   };
 

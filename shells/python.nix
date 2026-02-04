@@ -6,6 +6,8 @@ in pkgs.mkShell {
       numpy
       pandas
       matplotlib
+      beaupy
+      rich
     ]))
   ];
 }

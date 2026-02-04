@@ -3,11 +3,11 @@
 
 {
   imports = [ 
-    ./modules/sway.nix 
-    ./modules/waybar.nix
-    ./modules/hyprlock.nix
-    ./modules/rofi/rofi.nix
-    ./modules/nvim.nix
+    ./modules/home/sway.nix 
+    ./modules/home/waybar.nix
+    ./modules/home/hyprlock.nix
+    ./modules/home/rofi/rofi.nix
+    ./modules/home/nvim.nix
   ];
 
   home.username = "etcvi";

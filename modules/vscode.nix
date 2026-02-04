@@ -32,15 +32,19 @@ let
 	      p5-vscode
         firefox-devtools.vscode-firefox-debug
         ms-vscode-remote.remote-ssh
-	      bbenoist.nix
+	      jnoortheen.nix-ide
 	      ritwickdey.liveserver
 	      bradlc.vscode-tailwindcss
         ms-python.python
         ms-python.debugpy
         arrterian.nix-env-selector
+        svelte.svelte-vscode
       ];
   };
 in
 {
-  environment.systemPackages = [ vscode ];
+  environment.systemPackages = [ 
+    pkgs.vscode
+    pkgs.nixfmt
+  ];
 }
