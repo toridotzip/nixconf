@@ -4,10 +4,8 @@
   imports =
     [
       ./hardware-configuration.nix
-      # <home-manager/nixos>
       ./modules/vscode.nix
-      # ./modules/copyparty.nix
-      # ./modules/wg.nix
+      ./modules/games.nix
     ];
 
   boot = {
@@ -110,10 +108,7 @@
   users.users.etcvi = {
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" "video" ];
-    packages = with pkgs; [
-      nodejs
-      itch
-    ];
+    packages = with pkgs; [ ];
   };
 
   # --- Packages ---
@@ -147,8 +142,6 @@
     lshw
     swayimg
     signal-desktop
-    protonup-qt
-    heroic
     rawtherapee
     element-desktop
     # jellyfin-media-player
@@ -161,10 +154,6 @@
       DisablePocket = true;
       PasswordManagerEnabled = false;
     };
-  };
-
-  programs.steam = {
-    enable = true;
   };
 
   programs.zsh.enable = true;

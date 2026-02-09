@@ -18,6 +18,36 @@
     ];
   };
 
+  # --- Kanshi ---
+
+  services.kanshi = {
+    enable = true;
+    settings = [
+      {
+        profile.name = "nomad";
+        profile.outputs = [
+        {
+          criteria = "eDP-1";
+          status = "enable";
+        }];
+      }
+      {
+        profile.name = "office-severin";
+        profile.outputs = [
+          {
+            criteria = "Dell Inc. DELL U3415W F1T1W07S0LGL";
+            status = "enable";
+            mode = "3440x1440";
+          }
+          {
+            criteria = "eDP-1";
+            status = "disable";
+          }
+        ];
+      }
+    ];
+  };
+
   # --- Sway ---
   wayland.windowManager.sway = {
     enable = true;
@@ -33,6 +63,7 @@
     '';
     config = rec {
       modifier = "Mod4";
+      floating.modifier = "Mod4";
       terminal = "alacritty";
       defaultWorkspace = "workspace 1";
       bars = [{
@@ -44,7 +75,7 @@
       };
       output = {
         "*" = {
-          background = "${../resources/wallpapers/wallhaven-xee7jd.jpg} fill";
+          background = "${../../resources/wallpapers/wallhaven-xee7jd.jpg} fill";
         };
       };
       input = {
@@ -155,10 +186,17 @@
       	  "${mod}+Shift+minus" = "move scratchpad";
       	  # Show next scratchpad window or hide focused scratchpad window
           "${mod}+minus" = "scratchpad show";
-
+          
+          # Toggle the current focus between tiling and floating mode
+          "${mod}+Shift+space" = "floating toggle";
+          # Swap focus between the tiling area and the floating area
+          "${mod}+space" = "focus mode_toggle";
           
           # Switch keyboard layout
-      	  "${mod}+Space" = ''exec swaymsg input "1:1:AT_Translated_Set_2_keyboard" xkb_switch_layout next'';
+      	  "${mod}+tab" = ''exec swaymsg input "1:1:AT_Translated_Set_2_keyboard" xkb_switch_layout next'';
+
+          # Enter resize mode
+          "${mod}+r" = ''mode "resize"'';
 
           # Brightness
           "XF86MonBrightnessDown" = "exec swayosd-client --brightness -10";
@@ -171,7 +209,20 @@
           "XF86AudioRaiseVolume" = "exec swayosd-client --output-volume raise";
           "XF86AudioLowerVolume" = "exec swayosd-client --output-volume lower";
           "XF86AudioMute" = "exec swayosd-client --output-volume mute-toggle";
+      };
+      modes = {
+        resize = {
+          # Binds arrow keys to resizing commands
+          "Left" = "resize shrink width 10 px";
+          "Down" = "resize grow height 10 px";
+          "Up" = "resize shrink height 10 px";
+          "Right" = "resize grow width 10 px";
+
+          # Exit resize mode
+          "Escape" = "mode default";
+          "Return" = "mode default";
         };
+      };
     };
   };
 }
