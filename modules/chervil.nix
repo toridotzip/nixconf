@@ -16,6 +16,15 @@
     };
   };
 
+#  systemd.user.services.lowbat-notify = {
+#    Unit.Description = "Low Battery Notification";
+#    Service = {
+#      Type = "simple";
+#      ExecStart = "${pkgs.bash}/bin/bash -c 'while true; do capacity=$(cat /sys/class/power_supply/BAT0/capacity); status=$(cat /sys/class/power_supply/BAT0/status); if [ \"$status\" = \"Discharging\" ]; then if [ $capacity -le 10 ]; then ${pkgs.libnotify}/bin/notify-send -u critical \"Very Low Battery\" \"$capacity%\"; elif [ $capacity -le 20 ]; then ${pkgs.libnotify}/bin/notify-send -u normal \"Low Battery\" \"$capacity%\"; fi; fi; sleep 300; done'";
+#    };
+#    Install.WantedBy = [ "graphical-session.target" ];
+#  };
+
   hardware.enableRedistributableFirmware = true;
 
   hardware.graphics = {

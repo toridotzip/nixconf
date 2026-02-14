@@ -10,6 +10,10 @@
         position = "bottom";
         height = 30;
         mode = "dock";
+        output = [
+          "eDP-1"
+          "HDMI-A-1"
+        ];
         fixed-center = true;
         modules-left = [ "image" "custom/separator" "sway/workspaces" ];
         modules-center = [ "sway/window" ];
@@ -20,8 +24,17 @@
           tooltip = false;
         };
         "battery" = {
+          bat = "BAT0";
           format = "{capacity}%";
           format-charging = "{capacity}% (Charging)";
+          states = {
+            warning = 20;
+            critical = 10;
+          };
+          events = {
+            on-discharging-warning = "notify-send -u normal 'Low Battery'";
+            on-discharging-critical = "notify-send -u critical 'Very Low Battery'";
+          };
         };
         "clock" = {
           format = "{:%H:%M}";
