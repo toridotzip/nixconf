@@ -1,5 +1,5 @@
 # Home manager
-{ config, pkgs, ... }:
+{ config, pkgs, affinity-nix, ... }:
 
 {
   imports = [ 
@@ -18,6 +18,8 @@
     pkgs.slurp
     pkgs.sway-contrib.grimshot
     pkgs.git-credential-manager
+    pkgs.libnotify
+    affinity-nix.packages.x86_64-linux.v3
   ];
 
   home.stateVersion = "25.11";
