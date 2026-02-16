@@ -114,7 +114,9 @@
   # --- Packages ---
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config =  {
+    allowUnfree = true;
+ };
 
   # Set up home manager
   home-manager.users.etcvi = import ./home.nix;
@@ -141,10 +143,9 @@
     usbutils
     lshw
     swayimg
-    signal-desktop
     rawtherapee
     element-desktop
-    # jellyfin-media-player
+    signal-desktop
   ];
 
   programs.firefox = {
