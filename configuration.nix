@@ -146,6 +146,7 @@
     rawtherapee
     element-desktop
     signal-desktop
+    gh
   ];
 
   programs.firefox = {
@@ -225,6 +226,17 @@
       dejavu_fonts
       liberation_ttf
     ];
+    fontconfig = {
+      enable = true;
+      hinting.style = "medium";
+      cache32Bit = true;
+      defaultFonts = {
+        monospace = [ "DM Mono" ];
+        serif = ["DejaVu Serif"];
+        sansSerif = ["DejaVu Sans"];
+        emoji = ["Noto Color Emoji"];
+      };
+    };
   };
 
   # This value determines the NixOS release from which the default
