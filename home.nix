@@ -8,6 +8,7 @@
     ./modules/home/hyprlock.nix
     ./modules/home/rofi/rofi.nix
     ./modules/home/nvim.nix
+    ./modules/home/librewolf.nix
   ];
 
   home.username = "etcvi";
