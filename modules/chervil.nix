@@ -21,12 +21,15 @@
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
+      mesa.drivers
       intel-media-driver
       intel-vaapi-driver
       vpl-gpu-rt
       intel-compute-runtime
     ];
   };
+
+  hardware.opengl.extraPackages = [ pkgs.mesa.drivers ];
 
   hardware.trackpoint = {
     enable = true;

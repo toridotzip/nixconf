@@ -95,7 +95,8 @@
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
     ];
-    config.common.default = "*";
+    config.common.default = "wlr";
+    xdgOpenUsePortal = true;
   };
 
   # Configure keymap in X11
@@ -122,6 +123,8 @@
   home-manager.users.etcvi = import ./home.nix;
 
   environment.sessionVariables = { 
+    XDG_CURRENT_DEKSTOP = "Sway";
+    XDG_SESSION_TYPE = "wayland";
     LIBVA_DRIVER_NAME = "iHD"; 
     LD_LIBRARY_PATH = [ "${pkgs.libsecret}/lib" ];
     MOZ_ENABLE_WAYLAND = "1";
@@ -147,6 +150,7 @@
     element-desktop
     signal-desktop
     gh
+    xdg-utils
   ];
 
   programs.firefox = {
