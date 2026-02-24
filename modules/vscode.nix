@@ -24,11 +24,25 @@ let
     sha256 = "sha256-W/9k+r9ddSCBBj1V0b1Bd8I5oTCmzkAD10CUa2iLE70=";
   };
 
-  yarnspinner = vscode-utils.extensionFromVscodeMarketplace {
+  yarn-spinner = vscode-utils.extensionFromVscodeMarketplace {
     name = "yarn-spinner";
     publisher = "secretlab";
     version = "3.0.463";
     sha256 = "sha256-dapfCejOm6Fna7JSnLXUJh8nXjPrL0LyOPJCw7PDVVI=";
+  };
+
+  vue-snippets = vscode-utils.extensionFromVscodeMarketplace {
+    name = "vue-snippets";
+    publisher = "hollowtree";
+    version = "1.0.4";
+    sha256 = "sha256-IQBRAwiL0HdX4HooJMB1YIVPT+bl5gvMHg4mE0iZxm8=";
+  };
+
+  js-snippets = vscode-utils.extensionFromVscodeMarketplace {
+    name = "JavaScriptSnippetsStandard";
+    publisher = "jmsv";
+    version = "1.8.0";
+    sha256 = "sha256-EbRTkPZ7vppqu75+bFLlQjeDQKEZLqtRmkvfES5X+HQ=";
   };
 
   vscode = vscode-with-extensions.override {
@@ -37,22 +51,33 @@ let
         aura-theme
     	  symbols
 	      p5-vscode
-        yarnspinner
-        firefox-devtools.vscode-firefox-debug
+        yarn-spinner
+        js-snippets
+        vue-snippets
+        # --- in pkgs ---
+        ## --- gen ---
         ms-vscode-remote.remote-ssh
-	      jnoortheen.nix-ide
+        dbaeumer.vscode-eslint
+        esbenp.prettier-vscode
+        arrterian.nix-env-selector
+        # --- nix ---
+        jnoortheen.nix-ide
+        ## --- web ---
+        firefox-devtools.vscode-firefox-debug
+        formulahendry.auto-close-tag
+        formulahendry.auto-rename-tag
 	      ritwickdey.liveserver
 	      bradlc.vscode-tailwindcss
-        ms-python.python
+        vue.volar
+        ## --- python ---
         ms-python.debugpy
-        arrterian.nix-env-selector
-        svelte.svelte-vscode
+        ms-python.python
       ];
   };
 in
 {
   environment.systemPackages = [ 
-    pkgs.vscode
+    vscode
     pkgs.nixfmt
   ];
 }

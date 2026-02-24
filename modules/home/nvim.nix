@@ -45,6 +45,8 @@ in
       nvim-lspconfig
       which-key-nvim
       mini-nvim
+      markview-nvim
+      conform-nvim
       aura-theme
       (nvim-treesitter.withPlugins (
         plugins: with plugins; [
