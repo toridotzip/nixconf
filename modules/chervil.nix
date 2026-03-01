@@ -11,7 +11,7 @@
     settings = {
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-      START_CHARGE_THRESH_BAT0 = 40;
+      START_CHARGE_THRESH_BAT0 = 20;
       STOP_CHARGE_THRESH_BAT0 = 80;
     };
   };
@@ -21,15 +21,13 @@
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
-      mesa.drivers
+      mesa
       intel-media-driver
       intel-vaapi-driver
       vpl-gpu-rt
       intel-compute-runtime
     ];
   };
-
-  hardware.opengl.extraPackages = [ pkgs.mesa.drivers ];
 
   hardware.trackpoint = {
     enable = true;
