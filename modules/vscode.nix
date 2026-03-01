@@ -45,6 +45,13 @@ let
     sha256 = "sha256-EbRTkPZ7vppqu75+bFLlQjeDQKEZLqtRmkvfES5X+HQ=";
   };
 
+  power-mode = vscode-utils.extensionFromVscodeMarketplace {
+    name = "vscode-power-mode";
+    publisher = "hoovercj";
+    version = "3.0.2";
+    sha256 = "sha256-ZE+Dlq0mwyzr4nWL9v+JG00Gllj2dYwL2r9jUPQ8umQ=";
+  };
+
   vscode = vscode-with-extensions.override {
     vscodeExtensions = with vscode-extensions;
       [
@@ -54,12 +61,14 @@ let
         yarn-spinner
         js-snippets
         vue-snippets
+        power-mode
         # --- in pkgs ---
         ## --- gen ---
         ms-vscode-remote.remote-ssh
         dbaeumer.vscode-eslint
         esbenp.prettier-vscode
         arrterian.nix-env-selector
+        ms-azuretools.vscode-containers
         # --- nix ---
         jnoortheen.nix-ide
         ## --- web ---
