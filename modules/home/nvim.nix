@@ -40,6 +40,21 @@ in
     '';
     extraLuaConfig = ''
       require('mini.pairs').setup()
+
+      require('neorg').setup({
+        load = {
+          ["core.defaults"] = {},
+          ["core.concealer"] = {},
+          ["core.dirman"] = {
+            config = {
+              workspaces = {
+               notes = "~/notes",
+              },
+              default_workspace = "notes",
+            },
+          },
+        },
+      })
     '';
     plugins = with pkgs.vimPlugins; [
       nvim-lspconfig
@@ -48,6 +63,7 @@ in
       markview-nvim
       conform-nvim
       aura-theme
+      neorg
       (nvim-treesitter.withPlugins (
         plugins: with plugins; [
           nix
