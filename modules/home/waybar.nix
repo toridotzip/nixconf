@@ -32,8 +32,8 @@
             critical = 10;
           };
           events = {
-            on-discharging-warning = "notify-send -w -u normal 'Low Battery!'";
-            on-discharging-critical = "notify-send -w -u critical 'Very Low Battery!'";
+            on-discharging-warning = "notify-send -w -t 0 -u normal 'Low Battery!'";
+            on-discharging-critical = "notify-send -w -t 0 -u critical 'Very Low Battery!'";
           };
         };
         "clock" = {

@@ -54,6 +54,10 @@
     };
   };
 
+  home.sessionPath = [
+    "$HOME/.npm-global/node_modules/.bin"
+  ];
+
   nixpkgs.config = {
     allowUnfree = true;
   };
@@ -148,7 +152,29 @@
       height = 100;
       progress-color = "source #ffffff";
       default-timeout = 5000;
-      ignore-timeout = true;
+    };
+  };
+
+  systemd.user.services.screenbreak-reminder = {
+    Unit = {
+      Description = "Screenbreak reminder notification";
+    };
+    Service = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.libnotify}/bin/notify-send -u normal 'Screen Break' 'Time to take a 20-second break! Look away from your screen.' -t 10000";
+    };
+  };
+
+  systemd.user.timers.screenbreak-reminder = {
+    Unit = {
+      Description = "Timer for screenbreak reminders";
+    };
+    Timer = {
+      OnBootSec = "20min";
+      OnUnitActiveSec = "20min";
+    };
+    Install = {
+      WantedBy = [ "timers.target" ];
     };
   };
 
