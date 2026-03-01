@@ -6,6 +6,7 @@
       ./hardware-configuration.nix
       ./modules/vscode.nix
       ./modules/games.nix
+      ./modules/chervil.nix
     ];
 
   boot = {
@@ -123,7 +124,7 @@
   home-manager.users.etcvi = import ./home.nix;
 
   environment.sessionVariables = { 
-    XDG_CURRENT_DEKSTOP = "Sway";
+    XDG_CURRENT_DESKTOP = "Sway";
     XDG_SESSION_TYPE = "wayland";
     LIBVA_DRIVER_NAME = "iHD"; 
     LD_LIBRARY_PATH = [ "${pkgs.libsecret}/lib" ];
@@ -139,7 +140,6 @@
     curl
     tmux
     firefox
-    pulseaudio
     gnome-keyring
     tailscale
     libsecret
@@ -151,6 +151,8 @@
     signal-desktop
     gh
     xdg-utils
+    nodejs
+    pnpm
   ];
 
   programs.firefox = {
@@ -168,6 +170,17 @@
 
   security.polkit.enable = true;
 
+  virtualisation.docker = {
+    enable = false;
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+      daemon.settings = {
+        dns = [  "9.9.9.9" ];
+      };
+    };
+  };
+
   # --- Services ---
 
   services.getty = {
@@ -183,10 +196,14 @@
 
   services.xserver.videoDrivers = [ "modesetting" ];
 
+  services.pulseaudio.enable = false;
+  
   services.pipewire = {
     enable = true;
     alsa.enable = true;
+    alsa.support32Bit = true;
     pulse.enable = true;
+    jack.enable = true;
   };
 
   services.mullvad-vpn = {
