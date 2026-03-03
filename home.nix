@@ -1,5 +1,5 @@
 # Home manager
-{ config, pkgs, affinity-nix, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports = [ 
@@ -9,6 +9,7 @@
     ./modules/home/rofi/rofi.nix
     ./modules/home/nvim.nix
     ./modules/home/librewolf.nix
+    ./modules/home/waypaper.nix
   ];
 
   home.username = "etcvi";
@@ -20,8 +21,7 @@
     pkgs.sway-contrib.grimshot
     pkgs.git-credential-manager
     pkgs.libnotify
-    affinity-nix.packages.x86_64-linux.v3
-  ];
+];
 
   home.stateVersion = "25.11";
 

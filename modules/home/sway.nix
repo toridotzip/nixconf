@@ -63,7 +63,6 @@
     '';
     config = rec {
       modifier = "Mod4";
-      floating.modifier = "Mod4";
       terminal = "alacritty";
       defaultWorkspace = "workspace 1";
       bars = [{
@@ -75,14 +74,25 @@
       };
       output = {
         "*" = {
-          background = "${../../resources/wallpapers/wallhaven-xee7jd.jpg} fill";
+          background = "${../../resources/wallpapers/wallhaven-yq7m5d.jpg} fill";
         };
       };
       input = {
         "1:1:AT_Translated_Set_2_keyboard" = {
           xkb_layout = "us,de";
           # xkb_options = "grp:win_space_toggle";
-	};
+	      };
+      };
+      startup = [
+        { command = "exec waypaper --restore"; }
+      ];
+      floating = {
+        modifier = "Mod4";
+        criteria = [
+          {
+            app_id = "waypaper";
+          }
+        ];
       };
       colors = {
         focused = {

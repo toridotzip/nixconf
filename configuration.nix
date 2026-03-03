@@ -122,6 +122,7 @@
 
   # Set up home manager
   home-manager.users.etcvi = import ./home.nix;
+  home-manager.backupFileExtension = "bak";
 
   environment.sessionVariables = { 
     XDG_CURRENT_DESKTOP = "Sway";
