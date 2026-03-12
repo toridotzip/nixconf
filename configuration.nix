@@ -7,6 +7,7 @@
       ./modules/vscode.nix
       ./modules/games.nix
       ./modules/chervil.nix
+      ./modules/dev.nix
     ];
 
   boot = {
@@ -93,11 +94,19 @@
 
   xdg.portal = {
     enable = true;
+    wlr.enable = true;
+    xdgOpenUsePortal = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
     ];
-    config.common.default = "wlr";
-    xdgOpenUsePortal = true;
+    config = {
+      common.default = [ "wlr" "gtk" ];   
+      sway = {
+        default = [ "wlr" "gtk" ];
+        "org.freedesktop.impl.portal.Screenshot" = [ "wlr" ];
+        "org.freedesktop.impl.portal.ScreenCast" = [ "wlr" ];
+      };
+    };
   };
 
   # Configure keymap in X11
@@ -127,9 +136,12 @@
   environment.sessionVariables = { 
     XDG_CURRENT_DESKTOP = "Sway";
     XDG_SESSION_TYPE = "wayland";
+    NIXOS_XDG_OPEN_USE_PORTAL = "1";
     LIBVA_DRIVER_NAME = "iHD"; 
     LD_LIBRARY_PATH = [ "${pkgs.libsecret}/lib" ];
     MOZ_ENABLE_WAYLAND = "1";
+    _JAVA_AWT_WM_NONREPARENTING = "1";
+    _JAVA_OPTIONS = "-Dawt.useSystemAAFontSettings=on";
     # PATH = [ ];
   };
 
@@ -150,10 +162,8 @@
     rawtherapee
     element-desktop
     signal-desktop
-    gh
     xdg-utils
-    nodejs
-    pnpm
+    p7zip
   ];
 
   programs.firefox = {
@@ -171,15 +181,9 @@
 
   security.polkit.enable = true;
 
-  virtualisation.docker = {
-    enable = false;
-    rootless = {
-      enable = true;
-      setSocketVariable = true;
-      daemon.settings = {
-        dns = [  "9.9.9.9" ];
-      };
-    };
+  programs.java = {
+    enable = true;
+    package = pkgs.jdk11;
   };
 
   # --- Services ---
@@ -205,6 +209,7 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     jack.enable = true;
+    wireplumber.enable = true;
   };
 
   services.mullvad-vpn = {
@@ -250,7 +255,7 @@
     ];
     fontconfig = {
       enable = true;
-      hinting.style = "medium";
+      subpixel.rgba = "rgb";
       cache32Bit = true;
       defaultFonts = {
         monospace = [ "DM Mono" ];
