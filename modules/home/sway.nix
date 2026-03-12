@@ -45,6 +45,20 @@
           }
         ];
       }
+      {
+        profile.name = "office-home";
+        profile.outputs = [
+          {
+            criteria = "BNQ BenQ SW270C ETN8L04728SL0";
+            status = "enable";
+            mode = "2560x1440";
+          }
+          {
+            criteria = "eDP-1";
+            status = "disable";
+          }
+        ];
+      }
     ];
   };
 
