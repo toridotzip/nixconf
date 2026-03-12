@@ -73,8 +73,6 @@ let
         jnoortheen.nix-ide
         ## --- web ---
         firefox-devtools.vscode-firefox-debug
-        formulahendry.auto-close-tag
-        formulahendry.auto-rename-tag
 	      ritwickdey.liveserver
 	      bradlc.vscode-tailwindcss
         vue.volar

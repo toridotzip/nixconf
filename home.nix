@@ -21,6 +21,7 @@
     pkgs.sway-contrib.grimshot
     pkgs.git-credential-manager
     pkgs.libnotify
+    pkgs.trash-cli
 ];
 
   home.stateVersion = "25.11";
@@ -37,6 +38,7 @@
       rebuild-switch = "sudo nixos-rebuild switch";
       rebuild-boot = "sudo nixos-rebuild boot";
       rebuild-test = "sudo nixos-rebuild test";
+      rm = ''echo "Are you sure you don't want to trash instead?"'';
     };
 
     history.size = 10000;

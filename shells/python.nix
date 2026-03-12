@@ -8,6 +8,7 @@ in pkgs.mkShell {
       matplotlib
       beaupy
       rich
+      duckdb
     ]))
   ];
 }
