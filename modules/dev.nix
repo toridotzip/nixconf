@@ -3,15 +3,17 @@
 {
   services.mysql = {
     enable = true;
-    package = pkgs.mysql;
+    package = pkgs.mysql84;
   };
 
   environment.systemPackages = with pkgs; [
+    duckdb
     mycli
     gh
     nodejs
     pnpm
     mysql-workbench
+    dbeaver-bin
   ];
 
   virtualisation.docker = {
