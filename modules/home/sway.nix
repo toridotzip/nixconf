@@ -106,6 +106,10 @@
           {
             app_id = "waypaper";
           }
+          {
+            app_id = "firefox";
+            title = "^Picture-in-Picture$";
+          }
         ];
       };
       colors = {
@@ -143,7 +147,7 @@
           # Open terminal
           "${mod}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
       	  # Quit application
-          "${mod}+q" = "kill";
+          "${mod}+Shift+q" = "kill";
 	        # Show application Launcher
           "${mod}+d" = "exec ${pkgs.rofi}/bin/rofi -show drun";
       	  # Lock screen
