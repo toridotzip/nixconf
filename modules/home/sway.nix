@@ -86,11 +86,6 @@
         names = [ "DM Mono" ];
         size = "12";
       };
-      output = {
-        "*" = {
-          background = "${../../resources/wallpapers/wallhaven-yq7m5d.jpg} fill";
-        };
-      };
       input = {
         "1:1:AT_Translated_Set_2_keyboard" = {
           xkb_layout = "us,de";
@@ -98,7 +93,7 @@
 	      };
       };
       startup = [
-        { command = "exec waypaper --restore"; }
+        { command = "sleep 1 && waypaper --restore"; }
       ];
       floating = {
         modifier = "Mod4";
