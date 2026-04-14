@@ -60,6 +60,10 @@
     "$HOME/.npm-global/node_modules/.bin"
   ];
 
+  home.sessionVariables = {
+    XDG_CONFIG_HOME = "$HOME/.config";
+  };
+
   nixpkgs.config = {
     allowUnfree = true;
   };
