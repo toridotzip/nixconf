@@ -39,8 +39,77 @@ in
       colorscheme aura-dark
     '';
     extraLuaConfig = ''
+      -- Mini.pairs
       require('mini.pairs').setup()
+  
+      -- Mini.pick
+      require('mini.pick').setup()
 
+      vim.keymap.set('n', '<leader>ff', '<cmd>Pick files<cr>', { desc = 'Find files' })
+      vim.keymap.set('n', '<leader>fg', '<cmd>Pick grep_live<cr>', { desc = 'Live grep' })
+      vim.keymap.set('n', '<leader>fb', '<cmd>Pick buffers<cr>', { desc = 'Find buffers' })
+      vim.keymap.set('n', '<leader>fh', '<cmd>Pick help<cr>', { desc = 'Find help' })
+
+      -- Bullets.vim
+      vim.g.bullets_enabled_file_types = {
+        'markdown',
+        'text',
+        'gitcommit',
+      }
+
+      -- zk-nvim
+      require('zk').setup({
+        picker = "minipick",
+      })
+
+      vim.keymap.set('n', '<leader>zn', "<cmd>ZkNew { title = vim.fn.input('Title: ') }<cr>", { desc = 'New note' })
+      vim.keymap.set('n', '<leader>zo', '<cmd>ZkNotes<cr>', { desc = 'Open notes' })
+      vim.keymap.set('n', '<leader>zt', '<cmd>ZkTags<cr>', { desc = 'Search tags' })
+      vim.keymap.set('n', '<leader>zf', '<cmd>ZkNotes { match = { vim.fn.input("Search: ") } }<cr>', { desc = 'Find notes' })
+      vim.keymap.set('v', '<leader>zf', ":'<,'>ZkMatch<cr>", { desc = 'Find notes matching selection' })
+
+      -- Zen Mode
+      require('zen-mode').setup({
+        window = {
+          backdrop = 0.7,
+          width = 100,
+          options = {
+            number = false,
+          },
+        },
+        plugins = {
+          twilight = { enabled = true },
+        },
+        on_open = function(win)
+          vim.opt.linebreak = true
+          vim.opt.wrap = true
+          vim.opt.breakat = ' \t'
+        end,
+      })
+
+      -- Markview
+      require('markview').setup({
+        modes = { "n", "i", "no", "c" },
+        hybrid_modes = { "i" },
+        callbacks = {
+          on_enable = function (_, win)
+            vim.wo[win].conceallevel = 2
+            vim.wo[win].concealcursor = "nc"
+          end
+        }
+      })
+
+      -- markdown-preview
+      vim.g.mkdp_auto_close = 0       
+      vim.g.mkdp_theme = 'dark'        
+      vim.g.mkdp_browser = 'firefox'          
+      vim.g.mkdp_refresh_slow = 1      
+
+      vim.keymap.set('n', '<leader>mp', '<cmd>MarkdownPreview<cr>', { desc = 'Markdown preview open' })
+      vim.keymap.set('n', '<leader>mc', '<cmd>MarkdownPreviewStop<cr>', { desc = 'Markdown preview close' })
+      vim.keymap.set('n', '<leader>mt', '<cmd>MarkdownPreviewToggle<cr>', { desc = 'Markdown preview toggle' })
+
+      -- Neorg
       require('neorg').setup({
         load = {
           ["core.defaults"] = {},
@@ -60,10 +129,17 @@ in
       nvim-lspconfig
       which-key-nvim
       mini-nvim
+      mini-pick
       markview-nvim
       conform-nvim
       aura-theme
+      zk-nvim
+      zen-mode-nvim
+      twilight-nvim
+      vim-prettier
       neorg
+      markdown-preview-nvim
+      bullets-vim
       (nvim-treesitter.withPlugins (
         plugins: with plugins; [
           nix
@@ -75,4 +151,9 @@ in
       ))
     ];
   };
+
+  home.packages = with pkgs; [
+    zk
+    marksman
+  ];
 }
