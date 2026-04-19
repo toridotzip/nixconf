@@ -17,7 +17,6 @@
 
     # Use latest kernel.
     kernelPackages = pkgs.linuxPackages_latest;
-
     kernelModules = [ "r8152" "cdc_ncm" ];
   };
 
@@ -28,9 +27,10 @@
     enable = true;
     wifi.backend = "iwd";
     wifi.powersave = true;
-    dns = "systemd-resolved";
+    dns = "default";
   };
-  
+ 
+  networking.interfaces.wlan0.useDHCP = true; 
   networking.interfaces.tailscale0.useDHCP = false;
 
   networking.wireless.iwd = { 
@@ -38,7 +38,7 @@
     settings = {
       General = {
         #  AddressRandomization = "network";
-	      EnableNetworkConfiguration = true;
+	      EnableNetworkConfiguration = false;
       };
       Network = {
         EnableIPv6 = true;
@@ -49,22 +49,18 @@
     };
   };
 
-  networking.nameservers = [
-    "9.9.9.9"
-    "149.112.112.112"
-    "2620:fe::fe"
-    "2620:fe::9"
-  ];
-
   services.resolved = {
-    enable = true;
-    dnssec = "true";
+    enable = false;
+    dnssec = "allow-downgrade";
     fallbackDns = [
       "9.9.9.9"
       "149.112.112.112"
       "2620:fe::fe"
       "2620:fe::9"
     ];
+    extraConfig = ''
+      DNSOverTLS=opportunistic
+    ''
   };
  
   networking.firewall = {
@@ -72,6 +68,11 @@
     allowedTCPPortRanges = [
       { from = 10100; to = 10110; }
     ];
+  };
+
+  programs.captive-browser = {
+    enable = true;
+    interface = "wlan0";
   };
 
   # Set your time zone.
@@ -134,8 +135,10 @@
   home-manager.backupFileExtension = "bak";
 
   environment.sessionVariables = { 
-    XDG_CURRENT_DESKTOP = "Sway";
+    XDG_CURRENT_DESKTOP = "sway";
     XDG_SESSION_TYPE = "wayland";
+    GDK_BACKEND = "wayland";
+    NIXOS_OZONE_WL = "1";
     NIXOS_XDG_OPEN_USE_PORTAL = "1";
     LIBVA_DRIVER_NAME = "iHD"; 
     LD_LIBRARY_PATH = [ "${pkgs.libsecret}/lib" ];
@@ -164,6 +167,8 @@
     signal-desktop
     xdg-utils
     p7zip
+    chromium
+    wl-clipboard
   ];
 
   programs.firefox = {

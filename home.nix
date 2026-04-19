@@ -108,6 +108,14 @@
     };
     theme = "aura";
   };
+
+  programs.chromium = {
+    enable = true;
+    commandLineArgs = [
+      "--ozone-platform=wayland"
+      "--enable-features=WebRTCPipeWireCapturer"
+    ];
+  };
   
   programs.vesktop = {
     enable = true;

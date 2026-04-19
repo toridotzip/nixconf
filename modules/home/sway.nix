@@ -66,11 +66,7 @@
   wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
-    systemd.variables = ["--all"];
-    extraSessionCommands = ''
-      export GDK_BACKEND=wayland
-      export NIXOS_OZONE_WL=1
-    '';   
+    systemd.variables = ["--all"];   
     checkConfig = true;
     extraConfig = ''
       default_border none
