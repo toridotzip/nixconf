@@ -60,7 +60,7 @@
     ];
     extraConfig = ''
       DNSOverTLS=opportunistic
-    ''
+    '';
   };
  
   networking.firewall = {
