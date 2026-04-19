@@ -17,6 +17,9 @@ in
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
+    extraPackages = with pkgs; [
+      wl-clipboard
+    ];
     extraConfig = ''
       set number 
       set relativenumber
@@ -31,6 +34,10 @@ in
 
       set whichwrap+=h,l,<,>,[,]
       set scrolloff=5
+
+      set wrap
+      set linebreak
+      set nolist
 
       set shiftwidth=2
       set tabstop=2
@@ -124,6 +131,24 @@ in
           },
         },
       })
+
+      -- Clipboard config
+      vim.opt.clipboard = "unnamedplus"
+
+      if os.getenv("WAYLAND_DISPLAY") then
+        vim.g.clipboard = {
+          name = 'wl-clipboard',
+          copy = {
+            ['+'] = 'wl-copy',
+            ['*'] = 'wl-copy',
+          },
+          paste = {
+            ['+'] = 'wl-paste --no-newline',
+            ['*'] = 'wl-paste --no-newline',
+          },
+          cache_enabled = 0,
+        }
+        end
     '';
     plugins = with pkgs.vimPlugins; [
       nvim-lspconfig
