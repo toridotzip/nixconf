@@ -8,6 +8,7 @@
       ./modules/games.nix
       ./modules/chervil.nix
       ./modules/dev.nix
+      ./modules/syncthing.nix
     ];
 
   boot = {
@@ -120,7 +121,9 @@
   users.users.etcvi = {
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" "video" ];
-    packages = with pkgs; [ ];
+    packages = with pkgs; [ 
+      obsidian
+    ];
   };
 
   # --- Packages ---
@@ -216,6 +219,8 @@
     jack.enable = true;
     wireplumber.enable = true;
   };
+
+  services.openssh.enable = true;
 
   services.mullvad-vpn = {
     enable = true;
