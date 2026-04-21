@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 let
   aura-theme = pkgs.vimUtils.buildVimPlugin {
     name = "aura-theme";
@@ -9,6 +9,8 @@ let
       sha256 = "sha256-mIws/mbNsaevFfDSAj6n4qGVd8ZDPIsHkxY8Vpam7fM=";
     } + "/packages/neovim";
   };  
+
+  flakePath = "${config.home.homeDirectory}/nixconf";
 in
 {
   programs.neovim = {
@@ -19,6 +21,7 @@ in
     vimdiffAlias = true;
     extraPackages = with pkgs; [
       wl-clipboard
+      nixd
     ];
     extraConfig = ''
       set number 
@@ -56,6 +59,106 @@ in
       vim.keymap.set('n', '<leader>fg', '<cmd>Pick grep_live<cr>', { desc = 'Live grep' })
       vim.keymap.set('n', '<leader>fb', '<cmd>Pick buffers<cr>', { desc = 'Find buffers' })
       vim.keymap.set('n', '<leader>fh', '<cmd>Pick help<cr>', { desc = 'Find help' })
+
+      -- nvim-cmp setup
+      local cmp = require('cmp')
+      
+      cmp.setup({
+        snippet = {
+          expand = function(args)
+            vim.snippet.expand(args.body) -- Use built-in snippet expansion
+          end,
+        },
+        mapping = cmp.mapping.preset.insert({
+          ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-f>'] = cmp.mapping.scroll_docs(4),
+          ['<C-Space>'] = cmp.mapping.complete(),
+          ['<C-e>'] = cmp.mapping.abort(),
+          ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item
+          ['<Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_next_item()
+            else
+              fallback()
+            end
+          end, { 'i', 's' }),
+          ['<S-Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item()
+            else
+              fallback()
+            end
+          end, { 'i', 's' }),
+        }),
+        sources = cmp.config.sources({
+          { name = 'nvim_lsp' },
+          { name = 'path' },
+        }, {
+          { name = 'buffer' },
+        }),
+        formatting = {
+          format = function(entry, vim_item)
+            -- Show source in menu
+            vim_item.menu = ({
+              nvim_lsp = '[LSP]',
+              buffer = '[Buffer]',
+              path = '[Path]',
+            })[entry.source.name]
+            return vim_item
+          end
+        },
+      })
+
+      -- LSP 
+      local lspconfig = require('lspconfig')
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+      -- nixd
+      lspconfig.nixd.setup({
+        capabilities = capabilities,
+        settings = {
+          nixd = {
+            nixpkgs = {
+              expr = "import <nixpkgs> { }",
+            },
+            formatting = {
+              command = { "nixfmt" }, 
+            },
+            options = {
+              nixos = {
+                expr = '(builtins.getFlake "${flakePath}").nixosConfigurations.chervil.options',
+              },
+              home_manager = {
+                expr = '(builtins.getFlake "${flakePath}").homeConfigurations."etcvi@chervil".options',
+              },
+            },
+          },
+        },
+      })
+
+      -- marksman
+      lspconfig.marksman.setup({
+        capabilities = capabilities,
+      })
+
+      -- LSP keymaps (set on LspAttach)
+      vim.api.nvim_create_autocmd('LspAttach', {
+        group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+        callback = function(ev)
+          local opts = { buffer = ev.buf }
+          vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+          vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+          vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+          vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+          vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+          vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+          vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
+          vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+          vim.keymap.set('n', '<leader>f', function()
+            vim.lsp.buf.format { async = true }
+          end, opts)
+        end,
+      })
 
       -- Bullets.vim
       vim.g.bullets_enabled_file_types = {
@@ -151,20 +254,35 @@ in
         end
     '';
     plugins = with pkgs.vimPlugins; [
+      # LSP
       nvim-lspconfig
+      
+      # Completion
+      nvim-cmp
+      cmp-nvim-lsp
+      cmp-buffer
+      cmp-path
+      
+      # UI
       which-key-nvim
       mini-nvim
       mini-pick
       markview-nvim
       conform-nvim
       aura-theme
-      zk-nvim
       zen-mode-nvim
       twilight-nvim
-      vim-prettier
+      
+      # Markdown/Notes
+      zk-nvim
       neorg
       markdown-preview-nvim
       bullets-vim
+      
+      # Formatting
+      vim-prettier
+      
+      # Treesitter
       (nvim-treesitter.withPlugins (
         plugins: with plugins; [
           nix
@@ -180,5 +298,6 @@ in
   home.packages = with pkgs; [
     zk
     marksman
+    nixd  
   ];
 }
