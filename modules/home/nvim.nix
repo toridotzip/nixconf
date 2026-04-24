@@ -8,8 +8,8 @@ let
       rev = "505b6e2f0229f2637e8f6eda621b6cab98a41a87";
       sha256 = "sha256-mIws/mbNsaevFfDSAj6n4qGVd8ZDPIsHkxY8Vpam7fM=";
     } + "/packages/neovim";
-  };  
-
+  };
+  
   flakePath = "${config.home.homeDirectory}/nixconf";
 in
 {
@@ -66,7 +66,7 @@ in
       cmp.setup({
         snippet = {
           expand = function(args)
-            vim.snippet.expand(args.body) -- Use built-in snippet expansion
+            vim.snippet.expand(args.body) -- Use built-in snippet expansion (Neovim 0.10+)
           end,
         },
         mapping = cmp.mapping.preset.insert({
@@ -109,12 +109,14 @@ in
         },
       })
 
-      -- LSP 
-      local lspconfig = require('lspconfig')
+      -- LSP configuration
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-      -- nixd
-      lspconfig.nixd.setup({
+      -- Configure nixd with flake support
+      vim.lsp.config.nixd = {
+        cmd = { 'nixd' },
+        filetypes = { 'nix' },
+        root_markers = { 'flake.nix', '.git' },
         capabilities = capabilities,
         settings = {
           nixd = {
@@ -122,24 +124,33 @@ in
               expr = "import <nixpkgs> { }",
             },
             formatting = {
-              command = { "nixfmt" }, 
+              command = { "nixfmt" },
             },
             options = {
+              -- NixOS configuration options
               nixos = {
                 expr = '(builtins.getFlake "${flakePath}").nixosConfigurations.chervil.options',
               },
+              -- Home Manager options
               home_manager = {
                 expr = '(builtins.getFlake "${flakePath}").homeConfigurations."etcvi@chervil".options',
               },
             },
           },
         },
-      })
+      }
 
-      -- marksman
-      lspconfig.marksman.setup({
+      -- Configure marksman
+      vim.lsp.config.marksman = {
+        cmd = { 'marksman', 'server' },
+        filetypes = { 'markdown', 'markdown.mdx' },
+        root_markers = { '.git', '.marksman.toml' },
         capabilities = capabilities,
-      })
+      }
+
+      -- Enable LSP servers
+      vim.lsp.enable('nixd')
+      vim.lsp.enable('marksman')
 
       -- LSP keymaps (set on LspAttach)
       vim.api.nvim_create_autocmd('LspAttach', {
@@ -298,6 +309,6 @@ in
   home.packages = with pkgs; [
     zk
     marksman
-    nixd  
+    nixd
   ];
 }

@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-    services.logind.settings.Login = {
+  services.logind.settings.Login = {
     HandleLidSwitch = "suspend";
   };
 
