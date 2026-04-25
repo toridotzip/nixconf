@@ -174,6 +174,8 @@
     wl-clipboard
   ];
 
+  programs.ssh.startAgent = true;
+
   programs.firefox = {
     enable = true;
     policies = {
@@ -205,6 +207,7 @@
   '';
 
   services.gnome.gnome-keyring.enable = true;
+  services.gnome.gcr-ssh-agent.enable = false;
   services.dbus.packages = with pkgs; [ gnome-keyring ];
 
   services.xserver.videoDrivers = [ "modesetting" ];

@@ -1,5 +1,5 @@
 {
-  description = "A simple NixOS flake";
+  description = "NixOS Config";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
@@ -15,26 +15,39 @@
     };
  };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, agenix, ... }: {
-    nixosConfigurations.chervil = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
-      modules = [
-        ./configuration.nix
+  outputs = inputs@{ self, nixpkgs, home-manager, agenix, ... }: 
+    let
+      commonModules = [
         agenix.nixosModules.default
-        home-manager.nixosModules.home-manager
-        {
-          # home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.etcvi = import ./home.nix;
-          home-manager.extraSpecialArgs = { inherit inputs; };
-        }
         {
           environment.systemPackages = [
             agenix.packages.x86_64-linux.default
           ];
         }
       ];
+    in {
+      nixosConfigurations = { 
+        chervil = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+          modules = commonModules ++ [
+            ./configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              # home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.etcvi = import ./home.nix;
+              home-manager.extraSpecialArgs = { inherit inputs; };
+            }
+          ];
+        };
+        thyme = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+          modules = commonModules ++ [
+            ./configuration-thyme.nix
+          ];
+        };
+      };
     };
-  };
 }
