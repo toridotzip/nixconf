@@ -4,7 +4,6 @@
   imports =
     [
       ./hardware-configuration-thyme.nix
-      <agenix/modules/age.nix>
       ./modules/thyme/dnsmasq.nix
       ./modules/thyme/caddy.nix
       ./docker/navidrome.nix
@@ -108,7 +107,6 @@
     compose2nix
     tailscale
     figlet
-    (callPackage <agenix/pkgs/agenix.nix> {})
   ];
 
   programs.bash.shellAliases = {
