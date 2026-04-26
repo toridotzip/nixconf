@@ -19,6 +19,7 @@
     let
       commonModules = [
         agenix.nixosModules.default
+        home-manager.nixosModules.home-manager
         {
           environment.systemPackages = [
             agenix.packages.x86_64-linux.default
@@ -32,7 +33,6 @@
           specialArgs = { inherit inputs; };
           modules = commonModules ++ [
             ./configuration.nix
-            home-manager.nixosModules.home-manager
             {
               # home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
@@ -46,6 +46,11 @@
           specialArgs = { inherit inputs; };
           modules = commonModules ++ [
             ./configuration-thyme.nix
+            {
+              home-manager.useUserPackages = true;
+              home-manager.users.etcvi = import ./home-thyme.nix;
+              home-manager.extraSpecialArgs = { inherit inputs; };
+            }
           ];
         };
       };

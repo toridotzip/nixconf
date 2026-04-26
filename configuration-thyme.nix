@@ -89,12 +89,15 @@
     isNormalUser = true;
     description = "etcvi";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
+    shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPSGTYTcDagkYliV1tdRD9W3o5imsaOr2BnjNrbASHCs tori@parsley"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHJhW2kgom8HVqLBUhpQGwxrCKxccbiLgNLoqZA5Kse/ etcvi@chervil"
     ];
     packages = with pkgs; [];
   };
+
+  programs.zsh.enable = true;
 
   # --- Packages ---
 
@@ -108,12 +111,6 @@
     tailscale
     figlet
   ];
-
-  programs.bash.shellAliases = {
-    rebuild-switch = "sudo nixos-rebuild switch";
-    rebuild-boot = "sudo nixos-rebuild boot";
-    rebuild-test = "sudo nixos-rebuild test";
-  };
 
   virtualisation.docker = {
     enable = true;
