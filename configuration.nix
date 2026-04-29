@@ -123,6 +123,11 @@
     extraGroups = [ "networkmanager" "wheel" "video" ];
     packages = with pkgs; [ 
       obsidian
+      rawtherapee
+      element-desktop
+      signal-desktop
+      feishin
+      zotero
     ];
   };
 
@@ -165,9 +170,6 @@
     usbutils
     lshw
     swayimg
-    rawtherapee
-    element-desktop
-    signal-desktop
     xdg-utils
     p7zip
     chromium

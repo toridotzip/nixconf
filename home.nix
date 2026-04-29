@@ -16,14 +16,14 @@
   home.username = "etcvi";
   home.homeDirectory = "/home/etcvi";
 
-  home.packages = [
-    pkgs.grim
-    pkgs.slurp
-    pkgs.sway-contrib.grimshot
-    pkgs.git-credential-manager
-    pkgs.libnotify
-    pkgs.trash-cli
-];
+  home.packages = with pkgs; [
+    grim
+    slurp
+    sway-contrib.grimshot
+    git-credential-manager
+    libnotify
+    trash-cli
+  ];
 
   home.stateVersion = "25.11";
 
