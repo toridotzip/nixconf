@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
@@ -14,7 +14,11 @@
       ./modules/thyme/dufs.nix
     ];
 
-  age.secrets.syncthing-gui.file = ./secrets/syncthing-gui-thyme.age;
+  age.secrets.syncthing-gui-thyme = {
+    file = ./secrets/syncthing-gui-thyme.age;
+    owner = "etcvi";
+    mode = "400";
+  };
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -179,10 +183,6 @@
     configDir = "/home/etcvi/syncthing/config";
     dataDir = "/home/etcvi/syncthing/data";
     settings = {
-      gui = {
-        user = "etcvi";
-        insecureAdminAccess = false;
-      };
       devices = {
         "Parsley" = { id = "EGA7AYA-PZC6GZC-H5GMLTN-LNLDX24-KYSIULI-B3MGHVT-H46Q4VC-7XWJEQU"; };
       };
@@ -196,7 +196,7 @@
       };
     };
   };
-
+  
   services.tailscale = {
     enable = true;
     useRoutingFeatures = "server";
