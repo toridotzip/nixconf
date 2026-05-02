@@ -10,12 +10,6 @@
         command = "${pkgs.hyprlock}/bin/hyprlock";
       }
     ];
-    timeouts = [
-      {
-        timeout = 300;
-        command = "${pkgs.hyprlock}/bin/hyprlock";
-      }
-    ];
   };
 
   # --- Kanshi ---

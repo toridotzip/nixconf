@@ -9,7 +9,8 @@
     serviceConfig = {
       Type = "oneshot";
       ExecStart = pkgs.writeShellScript "check-nixos-test" ''
-        if [ -f /var/run/nixos-test-pending ]; then
+        flag="/run/user/1001/nixos-test-pending"
+        if [ -f "$flag" ]; then
           echo "WARNING: You ran 'rebuild test' but not 'rebuild switch'!"
           echo "Changes will be lost on reboot. Press Ctrl+C to cancel shutdown."
           sleep 10

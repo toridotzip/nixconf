@@ -19,6 +19,8 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  boot.extraModprobeConfig = "install algif_aead /bin/false";
+
   networking = {
     hostName = "thyme";
     networkmanager.enable = false;
@@ -48,9 +50,13 @@
     firewall = {
       enable = true;
       allowedTCPPorts = [ 
-        8384 # Syncthing
+        8384 # Syncthing GUI
+        22000 # Syncthing data
         28981 # Paperless
         5000 # Dufs
+      ];
+      allowedUDPPorts = [
+        21027 # Syncthing discovery
       ];
     };
   };
@@ -168,10 +174,13 @@
     enable = true;
     openDefaultPorts = true;
     guiAddress = "0.0.0.0:8384";
-    guiPasswordFile = "/run/agenix.d/3/syncthing-gui";
+    guiPasswordFile = config.age.secrets.syncthing-gui.path;
+    user = "etcvi";
+    configDir = "/home/etcvi/syncthing/config";
+    dataDir = "/home/etcvi/syncthing/data";
     settings = {
       gui = {
-        # user = "etcvi";
+        user = "etcvi";
         insecureAdminAccess = false;
       };
       devices = {
@@ -182,6 +191,7 @@
           id = "hucqa-g5qtw";
           path = "/mnt/media/music";
           type = "receiveonly";
+          devices = [ "Parsley" ];
         };
       };
     };

@@ -1,10 +1,6 @@
 { ... }:
 
 {
-  imports = [
-    ../services.nix
-  ];
-
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -30,10 +26,12 @@
         "git"
       ];
     };
-    interactiveShellInit = ''
+
+    initContent = ''
       _nixos_rebuild_check() {
         local last_cmd
         last_cmd=$(fc -ln -1 2>/dev/null | sed 's/^[[:space:]]*//')
+        local flag="''${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/nixos-test-pending"
 
         case "$last_cmd" in
           *nixos-rebuild\ test*)

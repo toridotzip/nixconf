@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports =
@@ -7,8 +7,8 @@
       ./modules/vscode.nix
       ./modules/games.nix
       ./modules/chervil.nix
-      ./modules/dev.nix
       ./modules/syncthing.nix
+      ./modules/services.nix
     ];
 
   boot = {
@@ -19,6 +19,7 @@
     # Use latest kernel.
     kernelPackages = pkgs.linuxPackages_latest;
     kernelModules = [ "r8152" "cdc_ncm" ];
+    extraModprobeConfig = "install algif_aead /bin/false";
   };
 
   networking.hostName = "chervil"; # Define your hostname.
@@ -174,6 +175,7 @@
     p7zip
     chromium
     wl-clipboard
+    nodejs
   ];
 
   programs.ssh.startAgent = true;
