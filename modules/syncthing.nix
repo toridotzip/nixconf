@@ -2,7 +2,7 @@
 
 {
   age.secrets.syncthing-gui = {
-    file = ../secrets/syncthing-gui.age;
+    file = ../secrets/syncthing-gui-chervil.age;
   };
 
   services.syncthing = {

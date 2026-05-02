@@ -132,6 +132,10 @@
     ];
   };
 
+  age = {
+    identityPaths = [ "/home/etcvi/.ssh/etcvi" ];
+  };
+
   # --- Packages ---
 
   # Allow unfree packages

@@ -14,7 +14,7 @@
       ./modules/thyme/dufs.nix
     ];
 
-  age.secrets.syncthing-gui.file = ./secrets/syncthing-gui.age;
+  age.secrets.syncthing-gui.file = ./secrets/syncthing-gui-thyme.age;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -174,7 +174,7 @@
     enable = true;
     openDefaultPorts = true;
     guiAddress = "0.0.0.0:8384";
-    guiPasswordFile = config.age.secrets.syncthing-gui.path;
+    guiPasswordFile = config.age.secrets.syncthing-gui-thyme.path;
     user = "etcvi";
     configDir = "/home/etcvi/syncthing/config";
     dataDir = "/home/etcvi/syncthing/data";
