@@ -33,13 +33,9 @@
 
       host-record = [
         "paperless.etcvi.lan,fd5f:177d:18ff:0::10"
-        "paperless.etcvi.lan, fd7a:115c:a1e0::6701:1386"
         "irc.etcvi.lan,fd5f:177d:18ff:0::10"
-        "irc.etcvi.lan, fd7a:115c:a1e0::6701:1386"
         "jelly.etcvi.lan,fd5f:177d:18ff:0::10"
-        "jelly.etcvi.lan, fd7a:115c:a1e0::6701:1386"
         "navi.etcvi.lan,fd5f:177d:18ff:0::10"
-        "navi.etcvi.lan, fd7a:115c:a1e0::6701:1386"
       ];
     };
   };
