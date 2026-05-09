@@ -129,6 +129,9 @@
       signal-desktop
       feishin
       zotero
+      bitwarden-desktop
+      steghide
+      vlc
     ];
   };
 
