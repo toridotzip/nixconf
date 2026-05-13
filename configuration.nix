@@ -129,6 +129,7 @@
       signal-desktop
       feishin
       zotero
+      poppler-utils
       bitwarden-desktop
       steghide
       vlc
@@ -183,6 +184,7 @@
     chromium
     wl-clipboard
     nodejs
+    nix-search-cli
   ];
 
   programs.ssh.startAgent = true;

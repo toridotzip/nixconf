@@ -52,6 +52,7 @@ let
         dbaeumer.vscode-eslint
         esbenp.prettier-vscode
         arrterian.nix-env-selector
+        ms-dotnettools.vscode-dotnet-runtime
         # --- nix ---
         jnoortheen.nix-ide
         ## --- web ---
@@ -67,5 +68,10 @@ in
   environment.systemPackages = [ 
     vscode
     pkgs.nixfmt
+    pkgs.dotnet-sdk_9
   ];
+
+  environment.sessionVariables = {
+    DOTNET_ROOT = "${pkgs.dotnet-sdk_9}/share/dotnet";
+  };
 }
