@@ -56,6 +56,8 @@
     ];
   };
 
+  services.playerctld.enable = true;
+
   # --- Sway ---
   wayland.windowManager.sway = {
     enable = true;
@@ -215,13 +217,14 @@
           "XF86MonBrightnessDown" = "exec swayosd-client --brightness -10";
           "XF86MonBrightnessUp" = "exec swayosd-client --brightness +10";
 
-          # Volume
-          # "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +1%";
-          # "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -1%";
-          # "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
+          # Audio
           "XF86AudioRaiseVolume" = "exec swayosd-client --output-volume raise";
           "XF86AudioLowerVolume" = "exec swayosd-client --output-volume lower";
           "XF86AudioMute" = "exec swayosd-client --output-volume mute-toggle";
+
+          "XF86WakeUp+j" = "exec swayosd-client --playerctl play-pause";
+          "XF86WakeUp+k" = "exec swayosd-client --playerctl next";
+          "XF86WakeUp+h" = "exec swayosd-client --playerctl previous";
       };
       modes = {
         resize = {

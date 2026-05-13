@@ -23,6 +23,7 @@
     git-credential-manager
     libnotify
     trash-cli
+    playerctl
   ];
 
   home.stateVersion = "25.11";
@@ -207,6 +208,7 @@
       ];
     };
   };
+
   fonts = {
     fontconfig.enable = true;
     fontconfig.defaultFonts.monospace = [ "DM Mono" ];
