@@ -42,7 +42,7 @@
           timezone = "Europe/Berlin";
         };
         "network" = {
-          format-wifi = "{essid} ({signalStrength}%)";
+          format-wifi = "{essid}: {ipaddr} ({signalStrength}%)";
           format-ethernet = "{ifname}: {ipaddr}";
           format-disconnected = "Disconnected!";
           tooltip = false;
