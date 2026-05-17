@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   imports =
@@ -22,37 +22,57 @@
     extraModprobeConfig = "install algif_aead /bin/false";
   };
 
-  networking.hostName = "chervil"; # Define your hostname.
+  networking = {
+    hostName = "chervil";
 
-  # Enable networking
-  networking.networkmanager = {
-    enable = true;
-    wifi.backend = "iwd";
-    wifi.powersave = true;
-    dns = "default";
-  };
- 
-  networking.interfaces.wlan0.useDHCP = true; 
-  networking.interfaces.tailscale0.useDHCP = false;
+    networkmanager = {
+      enable = true;
+      wifi.backend = "iwd";
+      wifi.powersave = true;
+      dns = "systemd-resolved";
+      unmanaged = [ "tun0" "interface-name:tun*" ];
+    };
 
-  networking.wireless.iwd = { 
-    enable = true;
-    settings = {
-      General = {
-        #  AddressRandomization = "network";
-	      EnableNetworkConfiguration = false;
+    interfaces = { 
+      wlan0.useDHCP = true; 
+      tailscale0.useDHCP = false;
+    };
+
+    wireless.iwd = { 
+      enable = true;
+      settings = {
+        General = {
+          #  AddressRandomization = "network";
+          EnableNetworkConfiguration = false;
+        };
+        Network = {
+          EnableIPv6 = true;
+        };
+        Settings = {
+          AutoConnect = true;
+        };
       };
-      Network = {
-        EnableIPv6 = true;
-      };
-      Settings = {
-        AutoConnect = true;
-      };
+    };
+
+    nameservers = [
+      "9.9.9.9"
+      "194.112.112.112"
+      "2620:fe::fe"
+      "2620:fe::9"
+    ];
+
+    firewall = {
+      enable = true;
+      allowedTCPPortRanges = [
+        { from = 10100; to = 10110; }
+      ];
+      checkReversePath = "loose";
+      trustedInterfaces = [ "tun0" ];
     };
   };
 
   services.resolved = {
-    enable = false;
+    enable = true;
     dnssec = "allow-downgrade";
     fallbackDns = [
       "9.9.9.9"
@@ -65,13 +85,6 @@
     '';
   };
  
-  networking.firewall = {
-    enable = true;
-    allowedTCPPortRanges = [
-      { from = 10100; to = 10110; }
-    ];
-  };
-
   programs.captive-browser = {
     enable = true;
     interface = "wlan0";
@@ -133,6 +146,10 @@
       bitwarden-desktop
       steghide
       vlc
+      imagemagick
+      ffmpeg
+      openvpn
+      ((import inputs.nixpkgs-unstable { system = pkgs.system; }).pi-coding-agent)
     ];
   };
 
