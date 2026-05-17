@@ -3,10 +3,10 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nur.url = "github:nix-community/NUR";
-    charm-nur.url = "github:charmbracelet/nur";
 
     agenix = {
       url = "github:ryantm/agenix";
@@ -17,7 +17,7 @@
     };
  };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, agenix, nur, charm-nur, ... }: 
+  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, agenix, ... }: 
     let
       commonModules = [
         agenix.nixosModules.default
@@ -35,17 +35,6 @@
           specialArgs = { inherit inputs; };
           modules = commonModules ++ [
             ./configuration.nix
-            charm-nur.nixosModules.crush
-            {
-              programs.crush = {
-                enable = true;
-              };
-              home-manager.useUserPackages = true;
-              home-manager.users.etcvi = {
-                imports = [ ./home.nix ];
-              };
-              home-manager.extraSpecialArgs = { inherit inputs; };
-            }
           ];
         };
         thyme = nixpkgs.lib.nixosSystem {

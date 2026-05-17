@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   # --- SwayIdle ---
@@ -67,7 +67,7 @@
     extraConfig = ''
       default_border none
     '';
-    config = rec {
+    config = {
       modifier = "Mod4";
       terminal = "alacritty";
       defaultWorkspace = "workspace 1";
