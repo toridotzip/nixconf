@@ -92,7 +92,7 @@
   };
   
   programs.vesktop = {
-    enable = true;
+    enable = false;
     vencord = {
       settings = {
         autoUpdate = true;
@@ -110,10 +110,6 @@
           ShowMeYourName.enabled = true;
           TypingTweaks.enabled = true;
         };
-        # enabledThemes = [ "midnight.css" ];
-      };
-      themes = { 
-        "midnight" = toString ./modules/vesktop/midnight.theme.css; 
       };
     };
   };
