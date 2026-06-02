@@ -149,7 +149,7 @@
       imagemagick
       ffmpeg
       openvpn
-      ((import inputs.nixpkgs-unstable { system = pkgs.system; }).pi-coding-agent)
+      ((import inputs.nixpkgs-unstable { system = pkgs.stdenv.hostPlatform.system; }).pi-coding-agent)
     ];
   };
 

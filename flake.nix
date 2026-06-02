@@ -31,17 +31,22 @@
     in {
       nixosConfigurations = { 
         chervil = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = commonModules ++ [
             ./configuration.nix
+            { nixpkgs.hostPlatform = "x86_64-linux"; }
+            {
+              home-manager.useUserPackages = true;
+              home-manager.users.etcvi = import ./home.nix;
+              home-manager.extraSpecialArgs = { inherit inputs; };
+            }
           ];
         };
         thyme = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = commonModules ++ [
             ./configuration-thyme.nix
+            { nixpkgs.hostPlatform = "x86_64-linux"; }
             {
               home-manager.useUserPackages = true;
               home-manager.users.etcvi = import ./home-thyme.nix;
