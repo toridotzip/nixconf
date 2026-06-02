@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ config, ... }:
 
 {
   age.secrets.syncthing-gui = {
@@ -17,11 +17,12 @@
       gui.user = "etcvi";
       devices = {
         "Parsley" = { id = "EGA7AYA-PZC6GZC-H5GMLTN-LNLDX24-KYSIULI-B3MGHVT-H46Q4VC-7XWJEQU"; };
+        "Chervil" = { id = "6ESAEBR-TMM5AGD-HYFDQCM-TJBWIL2-WIAAD4F-OVB2SYP-CZ63RU2-HFMP3QB"; };
       };
       folders = {
         "Notes" = {
           path = "/home/etcvi/notes";
-          devices = [ "Parsley" ];
+          devices = [ "Parsley" "Chervil" ];
         };
       };
     };  
