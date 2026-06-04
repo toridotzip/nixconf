@@ -9,7 +9,6 @@
       ./docker/navidrome.nix
       ./docker/jellyfin.nix
       ./docker/thelounge.nix
-    # ./docker/nextcloud.nix
       ./modules/thyme/paperless.nix
       ./modules/thyme/dufs.nix
     ];
@@ -104,7 +103,6 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPSGTYTcDagkYliV1tdRD9W3o5imsaOr2BnjNrbASHCs tori@parsley"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHJhW2kgom8HVqLBUhpQGwxrCKxccbiLgNLoqZA5Kse/ etcvi@chervil"
     ];
-    packages = with pkgs; [];
   };
 
   programs.zsh.enable = true;

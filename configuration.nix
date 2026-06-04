@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, pkgs-unstable, ... }:
 
 {
   imports =
@@ -135,7 +135,7 @@
   users.users.etcvi = {
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" "video" ];
-    packages = with pkgs; [ 
+    packages = (with pkgs; [ 
       obsidian
       rawtherapee
       element-desktop
@@ -148,9 +148,8 @@
       vlc
       imagemagick
       ffmpeg
-      openvpn
-      ((import inputs.nixpkgs-unstable { system = pkgs.stdenv.hostPlatform.system; }).pi-coding-agent)
-    ];
+      openvpn 
+    ]) ++ [ pkgs-unstable.pi-coding-agent ];
   };
 
   age = {
