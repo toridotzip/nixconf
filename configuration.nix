@@ -73,16 +73,16 @@
 
   services.resolved = {
     enable = true;
-    dnssec = "allow-downgrade";
-    fallbackDns = [
-      "9.9.9.9"
-      "149.112.112.112"
-      "2620:fe::fe"
-      "2620:fe::9"
-    ];
-    extraConfig = ''
-      DNSOverTLS=opportunistic
-    '';
+    settings.Resolve = {
+      DNSSEC = "allow-downgrade";
+      DNSOverTLS = "opportunistic";
+      FallbackDNS = [
+        "9.9.9.9"
+        "149.112.112.112"
+        "2620:fe::fe"
+        "2620:fe::9"
+      ];
+    };
   };
  
   programs.captive-browser = {
@@ -143,7 +143,6 @@
       feishin
       zotero
       poppler-utils
-      bitwarden-desktop
       steghide
       vlc
       imagemagick
@@ -215,8 +214,6 @@
   };
 
   programs.zsh.enable = true;
-
-  programs.light.enable = true;
 
   security.polkit.enable = true;
 

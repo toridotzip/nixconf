@@ -19,6 +19,8 @@ in
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
+    withRuby = false;
+    withPython3 = false;
     extraPackages = with pkgs; [
       wl-clipboard
       nixd
@@ -48,7 +50,7 @@ in
 
       colorscheme aura-dark
     '';
-    extraLuaConfig = ''
+    initLua = ''
       -- Mini.pairs
       require('mini.pairs').setup()
   

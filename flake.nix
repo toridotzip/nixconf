@@ -2,9 +2,9 @@
   description = "NixOS Config";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager/release-25.11";
+    home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nur.url = "github:nix-community/NUR";
 
@@ -31,7 +31,12 @@
     in {
       nixosConfigurations = { 
         chervil = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
+          specialArgs = { 
+            inherit inputs; 
+            pkgs-unstable = import inputs.nixpkgs-unstable {
+              system = "x86_64-linux";
+            };
+          };
           modules = commonModules ++ [
             ./configuration.nix
             { nixpkgs.hostPlatform = "x86_64-linux"; }
