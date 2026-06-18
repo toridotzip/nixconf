@@ -5,4 +5,5 @@ in
 {
   "syncthing-gui-thyme.age".publicKeys = [ etcvi thyme ];
   "syncthing-gui-chervil.age".publicKeys = [ etcvi ];
+  "mailbox-pass.age".publicKeys = [ etcvi ];
 }

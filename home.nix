@@ -3,6 +3,7 @@
 
 {
   imports = [ 
+    ./modules/home/secrets.nix
     ./modules/home/shell.nix
     ./modules/home/sway.nix 
     ./modules/home/waybar.nix
@@ -10,6 +11,7 @@
     ./modules/home/rofi/rofi.nix
     ./modules/home/nvim.nix
     ./modules/home/librewolf.nix
+    ./modules/home/neomutt.nix
     ./modules/home/waypaper.nix
     ./modules/home/yazi.nix
     ./modules/home/zathura.nix
