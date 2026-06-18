@@ -94,6 +94,9 @@
             app_id = "firefox";
             title = "^Picture-in-Picture$";
           }
+          {
+            app_id = "swayimg";
+          }
         ];
       };
       colors = {

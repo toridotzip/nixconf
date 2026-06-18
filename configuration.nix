@@ -147,7 +147,7 @@
       vlc
       imagemagick
       ffmpeg
-      openvpn 
+      zathura
     ]) ++ [ pkgs-unstable.pi-coding-agent ];
   };
 
@@ -187,7 +187,6 @@
     wget
     curl
     tmux
-    firefox
     gnome-keyring
     tailscale
     libsecret
@@ -200,6 +199,7 @@
     wl-clipboard
     nodejs
     nix-search-cli
+    sshfs
   ];
 
   programs.ssh.startAgent = true;
@@ -211,6 +211,7 @@
       DisablePocket = true;
       PasswordManagerEnabled = false;
     };
+    languagePacks = [ "en-US" "de" ];
   };
 
   programs.zsh.enable = true;
@@ -291,6 +292,7 @@
       fira-code-symbols
       dejavu_fonts
       liberation_ttf
+      unscii
     ];
     fontconfig = {
       enable = true;

@@ -11,6 +11,8 @@
     ./modules/home/nvim.nix
     ./modules/home/librewolf.nix
     ./modules/home/waypaper.nix
+    ./modules/home/yazi.nix
+    ./modules/home/zathura.nix
   ];
 
   home.username = "etcvi";
@@ -59,6 +61,15 @@
 
   programs.kitty = {
     enable = true;
+    shellIntegration.enableZshIntegration = true;
+    settings = {
+      shell = "${pkgs.zsh}/bin/zsh";
+      window_padding_width = 10;
+      cursor_shape = "beam";
+      cursor_blink_interval = "0.5";
+      font_family = "DM Mono";
+      font_size = 11;
+    };
   };
 
   programs.alacritty = {
