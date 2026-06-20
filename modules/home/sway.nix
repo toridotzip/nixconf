@@ -78,8 +78,11 @@
       input = {
         "1:1:AT_Translated_Set_2_keyboard" = {
           xkb_layout = "us,de";
-          # xkb_options = "grp:win_space_toggle";
 	      };
+        "2:10:TPPS/2_Elan_TrackPoint" = {
+          accel_profile = "flat";
+          pointer_accel = "0.3"; # -1.0 to 1.0
+        };
       };
       startup = [
         { command = "sleep 1 && waypaper --restore"; }

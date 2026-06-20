@@ -28,13 +28,4 @@
       intel-compute-runtime
     ];
   };
-
-  hardware.trackpoint = {
-    enable = true;
-    device = "TPPS/2 Elan TrackPoint";
-    sensitivity = 50;
-    speed = 10;
-    inertia = 20;
-    emulateWheel = true;
-  };
 }
