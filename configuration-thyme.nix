@@ -11,6 +11,7 @@
       ./docker/thelounge.nix
       ./modules/thyme/paperless.nix
       ./modules/thyme/dufs.nix
+      ./modules/thyme/calibre.nix
     ];
 
   age.secrets.syncthing-gui-thyme = {
@@ -53,10 +54,11 @@
     firewall = {
       enable = true;
       allowedTCPPorts = [ 
-        8384 # Syncthing GUI
+        8384  # Syncthing GUI
         22000 # Syncthing data
         28981 # Paperless
-        5000 # Dufs
+        5000  # Dufs
+        8080  # Calibre
       ];
       allowedUDPPorts = [
         21027 # Syncthing discovery
@@ -102,6 +104,7 @@
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPSGTYTcDagkYliV1tdRD9W3o5imsaOr2BnjNrbASHCs tori@parsley"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHJhW2kgom8HVqLBUhpQGwxrCKxccbiLgNLoqZA5Kse/ etcvi@chervil"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIISnqAIMcrE38HLDFP8zM7QKQ0PA91RSVuxZj9SCAn+E rosemary"
     ];
   };
 
