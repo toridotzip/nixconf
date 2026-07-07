@@ -29,6 +29,11 @@
           pointer_accel = "0.3"; # -1.0 to 1.0
         };
       };
+      output = {
+        "*" = {
+          bg = "#52525C solid_color";
+        };
+      };
       floating = {
         modifier = "Mod4";
         criteria = [

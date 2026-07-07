@@ -13,6 +13,7 @@
 
   home.packages = with pkgs; [
     libnotify
+    swaybg
   ];
 
   home.stateVersion = "26.05";

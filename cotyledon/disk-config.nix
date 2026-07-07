@@ -1,3 +1,5 @@
+{ ... }:
+
 {
   disko.devices = {
     disk.installer = {
@@ -12,15 +14,16 @@
             content = {
               type = "filesystem";
               format = "vfat";
-              mountpoint = "/boot/";
+              mountpoint = "/boot";
+            };
           };
-        };
-        root = {
-          size = "100%";
-          content = {
-            type = "filesystem";
-            format = "ext4";
-            mountpoint = "/";
+          root = {
+            size = "100%";
+            content = {
+              type = "filesystem";
+              format = "ext4";
+              mountpoint = "/";
+            };
           };
         };
       };

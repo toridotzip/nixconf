@@ -15,7 +15,7 @@
       system = "x86_64-linux";
       modules = [
         disko.nixosModules.disko
-        ./configuration.nix
+        ./cotyledon.nix
         ./hardware-configuration.nix
         home-manager.nixosModules.home-manager
         {
