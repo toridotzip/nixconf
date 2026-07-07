@@ -6,6 +6,7 @@
     options = {
       window-title-basename = true;
       zoom-center = true;
+      selection-clipboard = "clipboard";
     };
   };
 }

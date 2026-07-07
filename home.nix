@@ -28,6 +28,7 @@
     libnotify
     trash-cli
     playerctl
+    kitty-themes
   ];
 
   home.stateVersion = "25.11";
@@ -71,7 +72,9 @@
       cursor_blink_interval = "0.5";
       font_family = "DM Mono";
       font_size = 11;
+      confirm_os_window_close = 0;
     };
+    themeFile = "Glacier";
   };
 
   programs.alacritty = {

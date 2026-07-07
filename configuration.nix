@@ -134,7 +134,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.etcvi = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" "video" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "disk" ];
     packages = (with pkgs; [ 
       obsidian
       rawtherapee
@@ -148,7 +148,10 @@
       imagemagick
       ffmpeg
       zathura
-    ]) ++ [ pkgs-unstable.pi-coding-agent ];
+      rpi-imager
+    ]) ++ [ 
+      pkgs-unstable.pi-coding-agent 
+    ];
   };
 
   age = {
@@ -200,6 +203,8 @@
     nodejs
     nix-search-cli
     sshfs
+    pandoc
+    polkit_gnome
   ];
 
   programs.ssh.startAgent = true;
@@ -217,6 +222,20 @@
   programs.zsh.enable = true;
 
   security.polkit.enable = true;
+
+  systemd.user.services.polkit-gnome-authentication-agent-1 = {
+    description = "polkit-gnome-authentication-agent-1";
+    wantedBy = [ "graphical-session.target" ];
+    wants = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+      Restart = "on-failure";
+      RestartSec = 1;
+      TimeoutStopSec = 10;
+    };
+  };
 
   programs.java = {
     enable = true;
@@ -263,6 +282,8 @@
     hyprlock = {};
     sway.enableGnomeKeyring = true;
   };
+
+  services.udisks2.enable = true;
 
   nix.settings = {
     auto-optimise-store = true;

@@ -1,61 +1,6 @@
 { pkgs, ... }:
 
 {
-  # --- SwayIdle ---
-  services.swayidle = {
-    enable = true;
-    events = {
-      "before-sleep" = "${pkgs.hyprlock}/bin/hyprlock";
-    };
-  };
-
-  # --- Kanshi ---
-
-  services.kanshi = {
-    enable = true;
-    settings = [
-      {
-        profile.name = "nomad";
-        profile.outputs = [
-        {
-          criteria = "eDP-1";
-          status = "enable";
-        }];
-      }
-      {
-        profile.name = "office-severin";
-        profile.outputs = [
-          {
-            criteria = "Dell Inc. DELL U3415W F1T1W07S0LGL";
-            status = "enable";
-            mode = "3440x1440";
-          }
-          {
-            criteria = "eDP-1";
-            status = "disable";
-          }
-        ];
-      }
-      {
-        profile.name = "office-home";
-        profile.outputs = [
-          {
-            criteria = "BNQ BenQ SW270C ETN8L04728SL0";
-            status = "enable";
-            mode = "2560x1440";
-          }
-          {
-            criteria = "eDP-1";
-            status = "disable";
-          }
-        ];
-      }
-    ];
-  };
-
-  services.playerctld.enable = true;
-
-  # --- Sway ---
   wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
@@ -84,29 +29,11 @@
           pointer_accel = "0.3"; # -1.0 to 1.0
         };
       };
-      startup = [
-        { command = "sleep 1 && waypaper --restore"; }
-      ];
       floating = {
         modifier = "Mod4";
         criteria = [
           {
-            app_id = "waypaper";
-          }
-          {
-            app_id = "firefox";
-            title = "^Picture-in-Picture$";
-          }
-          {
             app_id = "swayimg";
-          }
-        ];
-      };
-      window = {
-        commands = [
-          {
-            command = "floating enable, resize set width 950 height 980";
-            criteria = { app_id = "zathura"; };
           }
         ];
       };
@@ -227,15 +154,6 @@
           # Brightness
           "XF86MonBrightnessDown" = "exec swayosd-client --brightness -10";
           "XF86MonBrightnessUp" = "exec swayosd-client --brightness +10";
-
-          # Audio
-          "XF86AudioRaiseVolume" = "exec swayosd-client --output-volume raise";
-          "XF86AudioLowerVolume" = "exec swayosd-client --output-volume lower";
-          "XF86AudioMute" = "exec swayosd-client --output-volume mute-toggle";
-
-          "XF86WakeUp+j" = "exec swayosd-client --playerctl play-pause";
-          "XF86WakeUp+k" = "exec swayosd-client --playerctl next";
-          "XF86WakeUp+h" = "exec swayosd-client --playerctl previous";
       };
       modes = {
         resize = {
