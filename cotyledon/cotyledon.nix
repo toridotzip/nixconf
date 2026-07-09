@@ -41,9 +41,18 @@
     ];
   };
 
+  users.users.etcvi = {
+    isNormalUser = true;
+    home = "/home/etcvi";
+    uid = 1000;
+    extraGroups = [ "wheel" "networkmanager" ];
+  };
+
   users.users.viewer = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
+    home = "/home/viewer";
+    uid = 1001;
+    extraGroups = [ "networkmanager" ];
   };
 
   environment.systemPackages = with pkgs; [
@@ -76,7 +85,7 @@
   };
 
   services.getty = {
-    autologinUser = "viewer";
+    autologinUser = "etcvi";
   };
 
   environment.loginShellInit = ''

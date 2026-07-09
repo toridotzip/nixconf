@@ -9,8 +9,8 @@
     ./modules/shell.nix
   ];
   
-  home.username = "viewer";
-  home.homeDirectory = "/home/viewer";
+  home.username = "etcvi";
+  home.homeDirectory = "/home/etcvi";
 
   home.packages = with pkgs; [
     libnotify

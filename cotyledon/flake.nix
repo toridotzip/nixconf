@@ -21,7 +21,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.viewer = import ./home.nix;
+          home-manager.users.etcvi = import ./home.nix;
         }
       ];
     };
