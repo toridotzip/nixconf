@@ -42,6 +42,12 @@
           }
         ];
       };
+      window.commands = [
+        {
+          command = "floating enable, resize set width 1000 height 900, move position 5 ppt 90";
+          criteria = { app_id = "Alacritty"; };
+        }
+      ];
       colors = {
         focused = {
           background = "#080f0d";

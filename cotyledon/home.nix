@@ -6,6 +6,7 @@
     ./modules/sway.nix
     ./modules/waybar.nix
     ./modules/rofi/rofi.nix
+    ./modules/shell.nix
   ];
   
   home.username = "viewer";
@@ -18,7 +19,9 @@
 
   home.stateVersion = "26.05";
 
-  programs.home-manager.enable = true;
+  programs.home-manager = {
+    enable = true;
+  };
 
   home.sessionPath = [
     "$HOME/.npm-global/node_modules/.bin"
@@ -50,7 +53,7 @@
         shell = { program = "${pkgs.zsh}/bin/zsh"; };
       };
       window = {
-        padding = { x = 10; y = 10; };
+        padding = { x = 50; y = 50; };
         dynamic_padding = false;
         decorations_theme_variant = "Dark";
       };
@@ -58,8 +61,8 @@
         style = { shape = "Beam"; blinking = "On"; };
       };
       font = {
-        normal = { family = "DM Mono"; style = "Regular"; };
-        size = 11;
+        normal = { family = "Ttyp0"; style = "Regular"; };
+        size = 14;
       };
     };
   }; 
@@ -78,4 +81,9 @@
       default-timeout = 5000;
     };
   }; 
+
+  services.swayosd = {
+    enable = true;
+    stylePath = toString ./modules/swayosd-style.css;
+  };
 }

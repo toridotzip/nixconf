@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  imports = [ ./disk-config.nix ];
+  imports = [ ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = false; 
@@ -29,9 +29,21 @@
     LC_TIME = "de_DE.UTF-8";
   };
 
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+    extraPackages = with pkgs; [
+      mesa
+      intel-media-driver
+      intel-vaapi-driver
+      vpl-gpu-rt
+      intel-compute-runtime
+    ];
+  };
+
   users.users.viewer = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" ];
+    extraGroups = [ "wheel" "networkmanager" ];
   };
 
   environment.systemPackages = with pkgs; [
@@ -81,6 +93,8 @@
       dm-mono
       dina-font
       fira-code-symbols
+      uw-ttyp0
+      gohufont
     ];
     fontconfig = {
       enable = true;
