@@ -11,6 +11,8 @@
     networkmanager = {
       enable = true;
     };
+
+    usePredictableInterfaceNames = false;
   };
 
   time.timeZone = "Europe/Berlin";
@@ -57,7 +59,6 @@
 
   environment.systemPackages = with pkgs; [
     nano
-    swayimg
     wl-clipboard
     steghide
   ];
@@ -93,6 +94,11 @@
   '';
 
   services.openssh.enable = true;
+
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+  };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ ... }:
 
 {
   # --- Waybar ---
@@ -15,7 +15,7 @@
           "HDMI-A-1"
         ];
         fixed-center = true;
-        modules-left = [ "sway/workspaces" ];
+        modules-left = [ "sway/workspaces" "custom/separator" "network" ];
         modules-center = [ "sway/window" ];
         modules-right = [ "battery" "custom/separator" "clock" ];
 
@@ -40,6 +40,9 @@
           format = "{:%H:%M}";
           tooltip-format = "{:%A, %d. %B %Y}";
           timezone = "Europe/Berlin";
+        };
+        "network" = {
+          format-wifi = "Connected to {essid} ({signalStrength}%)";
         };
         "custom/separator" = {
           format = "|";

@@ -36,16 +36,16 @@
       };
       floating = {
         modifier = "Mod4";
-        criteria = [
-          {
-            app_id = "swayimg";
-          }
-        ];
+        criteria = [ ];
       };
       window.commands = [
         {
-          command = "floating enable, resize set width 1000 height 900, move position 5 ppt 90";
+          command = "floating enable, resize set width 700 height 900, move position 4 ppt 80";
           criteria = { app_id = "Alacritty"; };
+        }
+        {
+          command = "floating enable, resize set width 950, move position 45 ppt 80";
+          criteria = { app_id = "swayimg"; };
         }
       ];
       colors = {

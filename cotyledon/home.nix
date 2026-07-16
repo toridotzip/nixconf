@@ -65,7 +65,20 @@
         size = 14;
       };
     };
+    theme = "moonfly";
   }; 
+
+  programs.swayimg = {
+    enable = true;
+    settings = {
+      viewer = {
+        position = "top_left";
+      };
+      info = {
+        show = "no";
+      };
+    };
+  };
 
   services.mako = {
     enable = true;
