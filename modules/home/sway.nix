@@ -85,6 +85,8 @@
         };
       };
       startup = [
+        { command = "exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK"; }
+        { command = "exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK"; }
         { command = "sleep 1 && waypaper --restore"; }
       ];
       floating = {

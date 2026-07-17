@@ -114,6 +114,7 @@
     xdgOpenUsePortal = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-wlr
     ];
     config = {
       common.default = [ "wlr" "gtk" ];   
@@ -124,6 +125,8 @@
       };
     };
   };
+
+  programs.xwayland.enable = true;
 
   # Configure keymap in X11
   #services.xserver.xkb = {
@@ -148,7 +151,15 @@
       imagemagick
       ffmpeg
       zathura
-      rpi-imager
+      apt-offline
+      rns
+      (pkgs.python3.withPackages (
+        python-pkgs: with python-pkgs; [
+          rich
+          textual
+          textual-dev
+          rns
+      ]))
     ]) ++ [ 
       pkgs-unstable.pi-coding-agent 
     ];
@@ -269,6 +280,8 @@
     wireplumber.enable = true;
   };
 
+  security.rtkit.enable = true;
+
   services.openssh.enable = true;
 
   services.mullvad-vpn = {
@@ -284,6 +297,11 @@
   };
 
   services.udisks2.enable = true;
+
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+  };
 
   nix.settings = {
     auto-optimise-store = true;

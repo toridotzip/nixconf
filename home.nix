@@ -15,6 +15,7 @@
     ./modules/home/waypaper.nix
     ./modules/home/yazi.nix
     ./modules/home/zathura.nix
+    ./modules/home/claude.nix
   ];
 
   home.username = "etcvi";
@@ -108,23 +109,26 @@
   };
   
   programs.vesktop = {
-    enable = false;
+    enable = true;
+    settings = {
+      hardwareAcceleration = true;
+    };
     vencord = {
       settings = {
         autoUpdate = true;
         autoUpdateNotification = true;
         notifyAboutUpdates = true;
         plugins = {
-          AlwaysTrust.enabled = true;
-          ClearURLs.enabled = true;
-          FixYoutubeEmbeds.enabled = true;
-          IrcColors.enabled = true;
-          LoadingQuotes.enabled = true;
-          NoTrack.enabled = true;
-          OnePingPerDM.enabled = true;
-          QuickReply.enabled = true;
-          ShowMeYourName.enabled = true;
-          TypingTweaks.enabled = true;
+#          AlwaysTrust.enabled = true;
+#          ClearURLs.enabled = true;
+#          FixYoutubeEmbeds.enabled = true;
+#          IrcColors.enabled = true;
+#          LoadingQuotes.enabled = true;
+#          NoTrack.enabled = true;
+#          OnePingPerDM.enabled = true;
+#          QuickReply.enabled = true;
+#          ShowMeYourName.enabled = true;
+#          TypingTweaks.enabled = true;
         };
       };
     };
