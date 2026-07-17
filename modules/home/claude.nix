@@ -5,6 +5,7 @@
     enable = true;
     settings = {
       includeCoAuthoredBy = false;
+      effortLevel = "medium";
       permissions = {
         allow = [
           "Bash(git diff:*)"
@@ -55,6 +56,11 @@
       - Keep responses concise and to the point.
       - Use descriptive variable names, never single letters
 
+      ## Planning Rules
+      - **Conciseness:** Output a checklist of 6-10 atomic, verb-first steps. Limit the approach to a summary paragraph.
+      - **Scope:** Explicitly define 'In Scope' and 'Out of Scope' boundaries.
+      - **Formatting:** Use bullet points. Skip long descriptions of alternatives.
+    
       ## Security Rules
       - Do NOT read or relay `.env`, `secrets/`, or credential files.
       - Do NOT run `env`, `printenv`, or `set`.
@@ -73,7 +79,7 @@
     '';
   };
 
-  home.pkgs = with pkgs; [
+  home.packages = with pkgs; [
     bubblewrap
     socat
   ];

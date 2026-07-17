@@ -38,6 +38,13 @@ let
     sha256 = "sha256-IQBRAwiL0HdX4HooJMB1YIVPT+bl5gvMHg4mE0iZxm8=";
   };
 
+  textual-syntax-highlighter = vscode-utils.extensionFromVscodeMarketplace {
+    name = "textual-syntax-highlighter";
+    publisher = "Textualize";
+    version = "1.3.0";
+    sha256 = "sha256-Z9lOIExpQndTG16HznLVCfU7JcxdW5qpG5HBg6U9CVI=";
+  };
+
   vscode = vscode-with-extensions.override {
     vscodeExtensions = with vscode-extensions;
       [
@@ -46,6 +53,7 @@ let
 	      p5-vscode
         yarn-spinner
         vue-snippets
+        textual-syntax-highlighter
         # --- in pkgs ---
         ## --- gen ---
         ms-vscode-remote.remote-ssh
@@ -61,6 +69,10 @@ let
 	      bradlc.vscode-tailwindcss
         vue.volar
         formulahendry.auto-close-tag
+        # --- python ---
+        ms-python.python
+        ms-python.debugpy
+        ms-python.black-formatter
       ];
   };
 in
