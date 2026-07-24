@@ -3,6 +3,7 @@
 {
   services.logind.settings.Login = {
     HandleLidSwitch = "suspend";
+    HandleLidSwitchDocked = "ignore";
   };
 
   services.thermald.enable = true;
