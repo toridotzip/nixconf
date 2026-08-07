@@ -1,5 +1,5 @@
 # Home manager
-{ config, pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [ 
@@ -134,6 +134,26 @@
     };
   };
 
+  programs.swayimg = {
+    enable = true;
+    settings = {
+      general = {
+        size = "fullscreen";
+      };
+      viewer = {
+        window = "#00000099";
+        scale = "fit";
+        antialiasing = "box";
+      };
+      gallery = {
+        selected_scale = "1,200";
+      };
+      "keys.viewer" = {
+        "Delete" = ''exec trash-put "%"; skip_file'';
+      };
+    };
+  };
+
   services.gnome-keyring = {
     enable = true;
     components = [ "secrets" ];
@@ -224,6 +244,22 @@
       ];
     };
   };
+
+  xdg.configFile."wireplumber/wireplumber.conf.d/51-ag06-volume.conf".text = ''
+    monitor.alsa.rules = [
+      {
+        matches = [
+          { device.name = "alsa_card.usb-Yamaha_Corporation_AG06_AG03-00" }
+        ]
+        actions = {
+          update-props = {
+            device.routes.default-sink-volume = 1.0
+            device.routes.default-source-volume = 1.0
+          }
+        }
+      }
+    ]
+  '';
 
   fonts = {
     fontconfig.enable = true;
