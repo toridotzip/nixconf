@@ -153,6 +153,7 @@
       zathura
       apt-offline
       rns
+      gimp
       (pkgs.python3.withPackages (
         python-pkgs: with python-pkgs; [
           rich
@@ -160,6 +161,10 @@
           textual-dev
           rns
       ]))
+      (pkgs.texlive.combine {
+        inherit (pkgs.texlive) 
+          scheme-small; 
+      })
     ]) ++ [ 
       pkgs-unstable.pi-coding-agent 
     ];
@@ -201,12 +206,12 @@
     wget
     curl
     tmux
+    fzf
     gnome-keyring
     tailscale
     libsecret
     usbutils
     lshw
-    swayimg
     xdg-utils
     p7zip
     chromium
@@ -216,6 +221,8 @@
     sshfs
     pandoc
     polkit_gnome
+    android-tools
+    wiremix
   ];
 
   programs.ssh.startAgent = true;
