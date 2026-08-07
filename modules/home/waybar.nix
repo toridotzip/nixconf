@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ ... }:
 
 {
   # --- Waybar ---
@@ -10,10 +10,6 @@
         position = "bottom";
         height = 30;
         mode = "dock";
-        output = [
-          "eDP-1"
-          "HDMI-A-1"
-        ];
         fixed-center = true;
         modules-left = [ "image" "custom/separator" "sway/workspaces" ];
         modules-center = [ "sway/window" ];
