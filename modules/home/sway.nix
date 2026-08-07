@@ -63,6 +63,8 @@
     checkConfig = true;
     extraConfig = ''
       default_border none
+      titlebar_border_thickness 1
+      titlebar_padding 5 2
     '';
     config = {
       modifier = "Mod4";
@@ -114,23 +116,23 @@
       };
       colors = {
         focused = {
-          background = "#080f0d";
+          background = "#00bc7d";
           indicator = "#2e9ef4";
           text = "#FFFFFF";
-          border = "#080f0d";
+          border = "#00bc7d";
       	  childBorder = "#080f0d";
         };
         focusedInactive = {
           background = "080f0d";
           text = "#71717b";
-          border = "#080f0d";
+          border = "080f0d";
       	  childBorder = "#080f0d";
       	  indicator = "#080f0d";
         };
         unfocused = {
           background = "080f0d";
           text = "#71717b";
-          border = "#080f0d";
+          border = "080f0d";
       	  childBorder = "#080f0d";
   	      indicator = "#080f0d";
         };
@@ -221,7 +223,7 @@
           "${mod}+space" = "focus mode_toggle";
           
           # Switch keyboard layout
-      	  "${mod}+tab" = ''exec swaymsg input "1:1:AT_Translated_Set_2_keyboard" xkb_switch_layout next'';
+      	  "${mod}+tab" = ''exec swaymsg input "*" xkb_switch_layout next'';
 
           # Enter resize mode
           "${mod}+r" = ''mode "resize"'';
