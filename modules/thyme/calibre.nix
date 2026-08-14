@@ -7,5 +7,6 @@
     port = 8080;
     user = "etcvi";
     group = "users";
+    extraFlags = [ ];
   };
 }
