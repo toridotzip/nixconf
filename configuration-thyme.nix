@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, ... }:
 
 {
   imports =
@@ -191,6 +191,12 @@
         "music" = {
           id = "hucqa-g5qtw";
           path = "/mnt/media/music";
+          type = "receiveonly";
+          devices = [ "Parsley" ];
+        };
+        "calibre" = {
+          id = "sjyng-fszvr";
+          path = "/mnt/media/books/calibre";
           type = "receiveonly";
           devices = [ "Parsley" ];
         };
