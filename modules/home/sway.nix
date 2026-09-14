@@ -64,7 +64,7 @@
     extraConfig = ''
       default_border none
       titlebar_border_thickness 1
-      titlebar_padding 5 2
+      titlebar_padding 7 4
     '';
     config = {
       modifier = "Mod4";
@@ -90,6 +90,7 @@
         { command = "exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK"; }
         { command = "exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK"; }
         { command = "sleep 1 && waypaper --restore"; }
+        { command = "sunsetr"; }
       ];
       floating = {
         modifier = "Mod4";
@@ -113,29 +114,29 @@
             criteria = { app_id = "zathura"; };
           }
           {
-            command = "floating enable, resize set width 600 height 400";
-            criteria = { app_id = "alacritty"; title = "wiremix"; };
+            command = "floating enable, resize set width 700 height 500";
+            criteria = { app_id = "Alacritty"; title = "wiremix"; };
           }
         ];
       };
       colors = {
         focused = {
-          background = "#00bc7d";
+          background = "#041610";
           indicator = "#2e9ef4";
           text = "#FFFFFF";
-          border = "#00bc7d";
+          border = "#041610";
       	  childBorder = "#080f0d";
         };
         focusedInactive = {
-          background = "080f0d";
-          text = "#71717b";
+          background = "#000000";
+          text = "#52525e";
           border = "080f0d";
       	  childBorder = "#080f0d";
       	  indicator = "#080f0d";
         };
         unfocused = {
-          background = "080f0d";
-          text = "#71717b";
+          background = "#000000";
+          text = "#52525e";
           border = "080f0d";
       	  childBorder = "#080f0d";
   	      indicator = "#080f0d";
