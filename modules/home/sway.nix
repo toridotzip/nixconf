@@ -112,6 +112,10 @@
             command = "floating enable, resize set width 950 height 980";
             criteria = { app_id = "zathura"; };
           }
+          {
+            command = "floating enable, resize set width 600 height 400";
+            criteria = { app_id = "alacritty"; title = "wiremix"; };
+          }
         ];
       };
       colors = {

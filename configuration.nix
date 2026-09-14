@@ -222,7 +222,6 @@
     pandoc
     polkit_gnome
     android-tools
-    wiremix
   ];
 
   programs.ssh.startAgent = true;

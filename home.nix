@@ -16,6 +16,7 @@
     ./modules/home/yazi.nix
     ./modules/home/zathura.nix
     ./modules/home/claude.nix
+    ./modules/home/xdg-settings.nix
   ];
 
   home.username = "etcvi";
@@ -30,6 +31,7 @@
     trash-cli
     playerctl
     kitty-themes
+    wiremix
   ];
 
   home.stateVersion = "25.11";
@@ -244,22 +246,6 @@
       ];
     };
   };
-
-  xdg.configFile."wireplumber/wireplumber.conf.d/51-ag06-volume.conf".text = ''
-    monitor.alsa.rules = [
-      {
-        matches = [
-          { device.name = "alsa_card.usb-Yamaha_Corporation_AG06_AG03-00" }
-        ]
-        actions = {
-          update-props = {
-            device.routes.default-sink-volume = 1.0
-            device.routes.default-source-volume = 1.0
-          }
-        }
-      }
-    ]
-  '';
 
   fonts = {
     fontconfig.enable = true;
