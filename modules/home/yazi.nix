@@ -1,5 +1,15 @@
 { lib, pkgs, ... }:
-
+let
+  yazi-plugins-aminur = pkgs.fetchgit {
+    url = "https://github.com/AminurAlam/yazi-plugins";
+    rev = "ce325af662cbdd438194c68b6d69a3ff59c1b305";
+    sparseCheckout = [ 
+      "preview-epub.yazi"
+      "preview-audio.yazi"
+    ];
+    hash = "sha256-kcor4t+N+99rbE217QUmnvbnE7dTOR/gfzthi9AbcnA=";
+  };
+in
 {
   programs.yazi = {
     enable = true;
@@ -34,6 +44,19 @@
           { mime = "image/*"; use = "swayimg"; }
         ];
       };
+      plugin = {
+        prepend_previewers = [
+          { mime = ""; run = "preview-epub"; }
+          { mime = "audio/mpegurl"; run = "code"; } # ignore .m3u files
+          { mime = "audio/*"; run = "preview-audio"; }
+          { url = "*.md"; run = ''piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"''; }
+        ];
+        prepend_preloaders = [
+          { mime = ""; run = "preview-epub"; }
+          { mime = "audio/mpegurl"; run = "code"; } # ignore .m3u files
+          { mime = "audio/*"; run = "preview-audio"; }
+        ];
+      };
     };
     vfs = {
       services = {
@@ -54,11 +77,23 @@
            type = lib.mkLuaInline "ui.Border.PLAIN";
         };
       };
+      preview-epub = {
+        package = "${yazi-plugins-aminur}/preview-epub.yazi";
+      };
+      preview-audio = {
+        package = "${yazi-plugins-aminur}/preview-audio.yazi";
+      };
+      piper = {
+        package = pkgs.yaziPlugins.piper;
+      };
     };
   };
 
   home.packages = with pkgs; [
     ueberzugpp
     poppler-utils
+    exiftool
+    epub-thumbnailer
+    glow
   ];
 }
