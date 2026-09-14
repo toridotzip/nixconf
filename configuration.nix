@@ -154,6 +154,7 @@
       apt-offline
       rns
       gimp
+      sunsetr
       (pkgs.python3.withPackages (
         python-pkgs: with python-pkgs; [
           rich
@@ -163,7 +164,7 @@
       ]))
       (pkgs.texlive.combine {
         inherit (pkgs.texlive) 
-          scheme-small; 
+          scheme-small titlesec; 
       })
     ]) ++ [ 
       pkgs-unstable.pi-coding-agent 
