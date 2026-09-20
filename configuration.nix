@@ -155,6 +155,8 @@
       rns
       gimp
       sunsetr
+      appimage-run
+      calibre-no-speech
       (pkgs.python3.withPackages (
         python-pkgs: with python-pkgs; [
           rich

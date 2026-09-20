@@ -18,11 +18,18 @@
       devices = {
         "Parsley" = { id = "EGA7AYA-PZC6GZC-H5GMLTN-LNLDX24-KYSIULI-B3MGHVT-H46Q4VC-7XWJEQU"; };
         "Rosemary" = { id = "6ESAEBR-TMM5AGD-HYFDQCM-TJBWIL2-WIAAD4F-OVB2SYP-CZ63RU2-HFMP3QB"; };
+        "Thyme" = { id = "QNGFMCX-NW5IYON-NCMHGPM-SZA6OJE-HPQ6JO3-YODD3KF-PAMQDHB-2U4UEQE"; };
       };
       folders = {
         "Notes" = {
           path = "/home/etcvi/notes";
           devices = [ "Parsley" "Rosemary" ];
+        };
+        "calibre" = {
+          id = "sjyng-fszvr";
+          path = "/home/etcvi/Documents/calibre";
+          type = "sendreceive";
+          devices = [ "Thyme" ];
         };
       };
     };  
