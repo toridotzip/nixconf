@@ -186,6 +186,7 @@
     settings = {
       devices = {
         "Parsley" = { id = "EGA7AYA-PZC6GZC-H5GMLTN-LNLDX24-KYSIULI-B3MGHVT-H46Q4VC-7XWJEQU"; };
+        "Chervil" = { id = "3HM3JJW-HMTIBPJ-CVT5QFT-HT3GBTF-YNS3ZR6-27BC7SC-FD7B5W4-3TIQ4Q3"; };
       };
       folders = {
         "music" = {
@@ -198,7 +199,7 @@
           id = "sjyng-fszvr";
           path = "/mnt/media/books/calibre";
           type = "receiveonly";
-          devices = [ "Parsley" ];
+          devices = [ "Parsley" "Chervil" ];
         };
       };
     };
