@@ -8,6 +8,7 @@
         gamemode
         retroarch-assets
         libretro.pcsx2
+        libretro.swanstation
     ];
 
     programs.steam = {
@@ -29,6 +30,7 @@
       enable = true;
       cores = {
         pcsx2.enable = true;
+        swanstation.enable = true;
       };
       settings = {
         video-driver = "glcore";
