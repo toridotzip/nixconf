@@ -22,8 +22,9 @@
       };
       folders = {
         "Notes" = {
-          path = "/home/etcvi/notes";
-          devices = [ "Parsley" "Rosemary" ];
+          id = "syrzc-h3xcd";
+          path = "/home/etcvi/Documents/notes";
+          devices = [ "Parsley" "Rosemary" "Thyme" ];
         };
         "calibre" = {
           id = "sjyng-fszvr";
