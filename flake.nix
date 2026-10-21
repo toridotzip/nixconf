@@ -12,7 +12,6 @@
       url = "github:ryantm/agenix";
       inputs = { 
         nixpkgs.follows = "nixpkgs";
-        darwin.follows = "";
       };
     };
  };
@@ -45,7 +44,7 @@
             { nixpkgs.hostPlatform = "x86_64-linux"; }
             {
               home-manager.useUserPackages = true;
-              home-manager.users.etcvi = import ./home.nix;
+              home-manager.users.etcvi = ./home.nix;
               home-manager.extraSpecialArgs = { inherit inputs; };
             }
           ];

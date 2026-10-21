@@ -1,4 +1,4 @@
-{ pkgs, inputs, pkgs-unstable, ... }:
+{ pkgs, ... }:
 
 {
   imports =
@@ -66,6 +66,7 @@
       allowedTCPPortRanges = [
         { from = 10100; to = 10110; }
       ];
+      allowedUDPPorts = [ 5353 ];
       checkReversePath = "loose";
       trustedInterfaces = [ "tun0" ];
     };
@@ -157,20 +158,13 @@
       sunsetr
       appimage-run
       calibre
-      (pkgs.python3.withPackages (
-        python-pkgs: with python-pkgs; [
-          rich
-          textual
-          textual-dev
-          rns
-      ]))
+      nix-output-monitor
+      android-tools
       (pkgs.texlive.combine {
         inherit (pkgs.texlive) 
           scheme-small titlesec; 
       })
-    ]) ++ [ 
-      pkgs-unstable.pi-coding-agent 
-    ];
+    ]);
   };
 
   age = {
@@ -183,10 +177,6 @@
   nixpkgs.config =  {
     allowUnfree = true;
  };
-
-  # Set up home manager
-  home-manager.users.etcvi = import ./home.nix;
-  home-manager.backupFileExtension = "bak";
 
   environment.sessionVariables = { 
     XDG_CURRENT_DESKTOP = "sway";
@@ -210,6 +200,7 @@
     curl
     tmux
     fzf
+    ripgrep
     gnome-keyring
     tailscale
     libsecret
@@ -224,7 +215,6 @@
     sshfs
     pandoc
     polkit_gnome
-    android-tools
   ];
 
   programs.ssh.startAgent = true;
