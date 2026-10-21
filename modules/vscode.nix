@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 
 let
   inherit (pkgs) vscode-extensions vscode-utils vscode-with-extensions;
@@ -22,6 +22,13 @@ let
     publisher = "samplavigne";
     version = "1.2.16";
     sha256 = "sha256-W/9k+r9ddSCBBj1V0b1Bd8I5oTCmzkAD10CUa2iLE70=";
+  };
+
+  p5-2-vscode = vscode-utils.extensionFromVscodeMarketplace {
+    name = "p5js-project-generator";
+    publisher = "Irti";
+    version = "1.1.3";
+    sha256 = "sha256-mcZpm11ZlPIEhcd1YFWdyfammm5LKsxUG2uGfSZjqzA=";
   };
 
   yarn-spinner = vscode-utils.extensionFromVscodeMarketplace {
@@ -50,7 +57,7 @@ let
       [
         aura-theme
     	  symbols
-	      p5-vscode
+	      p5-2-vscode
         yarn-spinner
         vue-snippets
         textual-syntax-highlighter
