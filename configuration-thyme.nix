@@ -59,7 +59,6 @@
         28981 # Paperless
         5000  # Dufs
         8080  # Calibre
-        8081  # Home Assistant
       ];
       allowedUDPPorts = [
         21027 # Syncthing discovery
@@ -110,6 +109,10 @@
   };
 
   programs.zsh.enable = true;
+
+  environment.variables = {
+    EDITOR = "nvim";
+  };
 
   security.pki.caCertificateBlacklist = [
     # CVE-2026-111943
