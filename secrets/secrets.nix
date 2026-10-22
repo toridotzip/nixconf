@@ -6,4 +6,6 @@ in
   "syncthing-gui-thyme.age".publicKeys = [ etcvi thyme ];
   "syncthing-gui-chervil.age".publicKeys = [ etcvi ];
   "mailbox-pass.age".publicKeys = [ etcvi ];
+  "z2m.age".publicKeys = [ etcvi thyme ];
+  "mosquitto.age".publicKeys = [ etcvi thyme ];
 }
