@@ -10,8 +10,8 @@
       ./docker/jellyfin.nix
       ./docker/thelounge.nix
       ./modules/thyme/paperless.nix
-      ./modules/thyme/dufs.nix
       ./modules/thyme/calibre.nix
+      ./modules/thyme/homeassistant.nix
     ];
 
   age.secrets.syncthing-gui-thyme = {
@@ -59,6 +59,7 @@
         28981 # Paperless
         5000  # Dufs
         8080  # Calibre
+        8081  # Home Assistant
       ];
       allowedUDPPorts = [
         21027 # Syncthing discovery
@@ -109,6 +110,16 @@
   };
 
   programs.zsh.enable = true;
+
+  security.pki.caCertificateBlacklist = [
+    # CVE-2026-111943
+    "Comodo AAA Services root"
+    # https://hg-edge.mozilla.org/projects/nss/rev/26d38a0c3fb81e7fb2acedbaf4c42dd21dce0517
+    "emSign ECC Root CA - G3"
+    # https://hg-edge.mozilla.org/projects/nss/rev/8159223c48ceeb1273a1915bca95a517294ab0e0
+    "emSign Root CA - C1"
+    "emSign ECC Root CA - C3"
+  ];
 
   # --- Packages ---
 
@@ -187,6 +198,7 @@
       devices = {
         "Parsley" = { id = "EGA7AYA-PZC6GZC-H5GMLTN-LNLDX24-KYSIULI-B3MGHVT-H46Q4VC-7XWJEQU"; };
         "Chervil" = { id = "3HM3JJW-HMTIBPJ-CVT5QFT-HT3GBTF-YNS3ZR6-27BC7SC-FD7B5W4-3TIQ4Q3"; };
+        "Rosemary" = { id = "6ESAEBR-TMM5AGD-HYFDQCM-TJBWIL2-WIAAD4F-OVB2SYP-CZ63RU2-HFMP3QB"; };
       };
       folders = {
         "music" = {
@@ -200,6 +212,12 @@
           path = "/mnt/media/books/calibre";
           type = "receiveonly";
           devices = [ "Parsley" "Chervil" ];
+        };
+        "notes" = {
+          id = "syrzc-h3xcd";
+          path = "/mnt/media/notes";
+          type = "receiveonly";
+          devices = [ "Parsley" "Chervil" "Rosemary" ];
         };
       };
     };
