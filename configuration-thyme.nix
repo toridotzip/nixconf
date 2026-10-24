@@ -199,28 +199,31 @@
     dataDir = "/home/etcvi/syncthing/data";
     settings = {
       devices = {
-        "Parsley" = { id = "EGA7AYA-PZC6GZC-H5GMLTN-LNLDX24-KYSIULI-B3MGHVT-H46Q4VC-7XWJEQU"; };
+        "Parsley" = { id = "5JQVYOL-TIFMM2A-RABDUVG-QYKVFSF-HR6ZXKN-MWALM3B-AUGAWQG-WQABUAN"; };
         "Chervil" = { id = "3HM3JJW-HMTIBPJ-CVT5QFT-HT3GBTF-YNS3ZR6-27BC7SC-FD7B5W4-3TIQ4Q3"; };
         "Rosemary" = { id = "6ESAEBR-TMM5AGD-HYFDQCM-TJBWIL2-WIAAD4F-OVB2SYP-CZ63RU2-HFMP3QB"; };
       };
       folders = {
         "music" = {
-          id = "hucqa-g5qtw";
+          id = "xgmme-mfyey";
           path = "/mnt/media/music";
           type = "receiveonly";
           devices = [ "Parsley" ];
+          ignorePerms = true;
         };
         "calibre" = {
-          id = "sjyng-fszvr";
+          id = "jewod-t7g2z";
           path = "/mnt/media/books/calibre";
           type = "receiveonly";
           devices = [ "Parsley" "Chervil" ];
+          ignorePerms = true;
         };
         "notes" = {
-          id = "syrzc-h3xcd";
+          id = "9y4fj-nqhtg";
           path = "/mnt/media/notes";
           type = "receiveonly";
           devices = [ "Parsley" "Chervil" "Rosemary" ];
+          ignorePerms = true;
         };
       };
     };
@@ -240,6 +243,11 @@
     experimental-features = [ "nix-command" "flakes" ];
   };
 
-  system.stateVersion = "25.11"; # Did you read the comment?
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
 
+  system.stateVersion = "25.11"; # Did you read the comment?
 }
