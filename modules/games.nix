@@ -3,7 +3,6 @@
 {
     users.users.etcvi.packages = with pkgs; [
         itch
-        protonup-qt
         heroic
         gamemode
         retroarch-assets

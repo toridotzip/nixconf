@@ -1,5 +1,15 @@
-{ ... }:
-
+{ lib, ... }:
+let
+  hidden = [
+    "calibre-ebook-edit"
+    "calibre-ebook-viewer"
+    "calibre-lrfviewer"
+    "rofi"
+    "rofi-theme-selector"
+    "nixos-manual"
+    "syncthing-ui"
+  ];
+in
 {
   xdg.desktopEntries = {
     wiremix = {
@@ -12,6 +22,16 @@
       icon = "multimedia-volume-control";
     };
   };
+
+  xdg.dataFile = lib.listToAttrs (map (n: {
+    name = "applications/${n}.desktop";
+    value.text = ''
+      [Desktop Entry]
+      Type=Application
+      Name=${n}
+      NoDisplay=true
+    '';
+  }) hidden);
 
   xdg.configFile."wireplumber/wireplumber.conf.d/51-ag06-volume.conf".text = ''
     monitor.alsa.rules = [
