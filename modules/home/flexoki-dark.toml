@@ -1,0 +1,73 @@
+# Flexoki Dark for Alacritty (converted from the yazi flavor)
+
+[colors.primary]
+background = "#100F0F"
+foreground = "#CECDC3"
+dim_foreground = "#878580"
+bright_foreground = "#CECDC3"
+
+[colors.cursor]
+text = "#100F0F"
+cursor = "#CECDC3"
+
+[colors.vi_mode_cursor]
+text = "#100F0F"
+cursor = "#3AA99F"
+
+[colors.selection]
+text = "#CECDC3"
+background = "#403E3C"
+
+[colors.search.matches]
+foreground = "#100F0F"
+background = "#3AA99F"
+
+[colors.search.focused_match]
+foreground = "#100F0F"
+background = "#D0A215"
+
+[colors.footer_bar]
+foreground = "#CECDC3"
+background = "#282726"
+
+[colors.hints.start]
+foreground = "#100F0F"
+background = "#D0A215"
+
+[colors.hints.end]
+foreground = "#100F0F"
+background = "#878580"
+
+[colors.line_indicator]
+foreground = "#CECDC3"
+background = "#282726"
+
+[colors.normal]
+black = "#100F0F"
+red = "#D14D41"
+green = "#879A39"
+yellow = "#D0A215"
+blue = "#4385BE"
+magenta = "#CE5D97"
+cyan = "#3AA99F"
+white = "#878580"
+
+[colors.bright]
+black = "#575653"
+red = "#AF3029"
+green = "#66800B"
+yellow = "#AD8301"
+blue = "#205EA6"
+magenta = "#A02F6F"
+cyan = "#24837B"
+white = "#CECDC3"
+
+[colors.dim]
+black = "#1C1B1A"
+red = "#942822"
+green = "#536907"
+yellow = "#866500"
+blue = "#133B71"
+magenta = "#72205D"
+cyan = "#1C6C66"
+white = "#6F6E69"

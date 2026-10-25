@@ -30,7 +30,6 @@
     libnotify
     trash-cli
     playerctl
-    kitty-themes
     wiremix
   ];
 
@@ -61,28 +60,10 @@
     };
   };
 
-  programs.lf = {
-    enable = true;
-  };
-
-  programs.kitty = {
-    enable = true;
-    shellIntegration.enableZshIntegration = true;
-    settings = {
-      shell = "${pkgs.zsh}/bin/zsh";
-      window_padding_width = 10;
-      cursor_shape = "beam";
-      cursor_blink_interval = "0.5";
-      font_family = "DM Mono";
-      font_size = 11;
-      confirm_os_window_close = 0;
-    };
-    themeFile = "Glacier";
-  };
-
   programs.alacritty = {
     enable = true;
     settings = {
+      general.import = [ ./modules/home/flexoki-dark.toml ];
       terminal = {
         shell = { program = "${pkgs.zsh}/bin/zsh"; };
       };
@@ -99,7 +80,6 @@
         size = 11;
       };
     };
-    theme = "aura";
   };
 
   programs.chromium = {
