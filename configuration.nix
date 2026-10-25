@@ -85,6 +85,16 @@
       ];
     };
   };
+
+  security.pki.caCertificateBlacklist = [
+    # CVE-2026-111943
+    "Comodo AAA Services root"
+    # https://hg-edge.mozilla.org/projects/nss/rev/26d38a0c3fb81e7fb2acedbaf4c42dd21dce0517
+    "emSign ECC Root CA - G3"
+    # https://hg-edge.mozilla.org/projects/nss/rev/8159223c48ceeb1273a1915bca95a517294ab0e0
+    "emSign Root CA - C1"
+    "emSign ECC Root CA - C3"
+  ];
  
   programs.captive-browser = {
     enable = true;
@@ -138,11 +148,10 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.etcvi = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" "video" "disk" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "disk" "wireshark" ];
     packages = (with pkgs; [ 
       obsidian
       rawtherapee
-      element-desktop
       signal-desktop
       feishin
       zotero
@@ -160,6 +169,7 @@
       calibre
       nix-output-monitor
       android-tools
+      bitwarden-desktop
       (pkgs.texlive.combine {
         inherit (pkgs.texlive) 
           scheme-small titlesec; 
@@ -250,6 +260,16 @@
   programs.java = {
     enable = true;
     package = pkgs.jdk11;
+  };
+
+  programs.wireshark = {
+    enable = true;
+    package = pkgs.wireshark;
+  };
+
+  programs.nh = {
+    enable = true;
+    flake = "/home/etcvi/nixconf";
   };
 
   # --- Services ---
