@@ -1,8 +1,9 @@
-{ config, options, ... }:
+{ config, options, pkgs, inputs, ... }:
 
 {
   services.home-assistant = {
     enable = true;
+    package = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.home-assistant;
     extraComponents = options.services.home-assistant.extraComponents.default ++ [ "mqtt"  "mobile_app" ];
     extraPackages = python3Packages: with python3Packages; [
       zlib-ng
