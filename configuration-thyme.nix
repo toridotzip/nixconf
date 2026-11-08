@@ -102,7 +102,7 @@
     extraGroups = [ "networkmanager" "wheel" "docker" ];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPSGTYTcDagkYliV1tdRD9W3o5imsaOr2BnjNrbASHCs tori@parsley"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID5nhuAaiJnqwZbZcBGUxaS1ttG/5u9/0MBf01vFisc9 Riley@Parsley"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHJhW2kgom8HVqLBUhpQGwxrCKxccbiLgNLoqZA5Kse/ etcvi@chervil"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIISnqAIMcrE38HLDFP8zM7QKQ0PA91RSVuxZj9SCAn+E rosemary"
     ];
