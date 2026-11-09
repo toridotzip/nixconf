@@ -10,8 +10,15 @@
       isal
     ];
     config = {
-      http = {
-        server_port = 8123;
+      homeassistant = {
+        name = "Home";
+        latitude = "!secret lat";
+        longitude = "!secret long";
+        elevation = 40;
+        radius = 15;
+        unit_system = "metric";
+        currency = "EUR";
+        country = "DE";
       };
       default_config = {};
       mobile_app = {};
